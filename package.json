@@ -1,0 +1,19 @@
+{
+  "name": "webcom-status",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --exit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/russellkoons/webcom-status.git"
+  },
+  "author": "Russell Koons",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/russellkoons/webcom-status/issues"
+  },
+  "homepage": "https://github.com/russellkoons/webcom-status#readme"
+}
