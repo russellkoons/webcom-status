@@ -53,3 +53,22 @@ function runServer(databaseUrl, port = 42069) {
   });
 }
 
+function closeServer() {
+  return mongoose.disconnect().then(() => {
+    return new Promise((resolve, reject) => {
+      console.log('Closing server');
+      server.close(err => {
+        if (err) {
+          return reject(err);
+        }
+        resolve();
+      });
+    });
+  });
+}
+
+if (require.main === module) {
+  runServer('mongodb://localhost/webcom').catch(err => console.error(err));
+}
+
+module.exports = { app, runServer, closeServer }
