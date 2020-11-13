@@ -16,5 +16,11 @@
   "bugs": {
     "url": "https://github.com/russellkoons/webcom-status/issues"
   },
-  "homepage": "https://github.com/russellkoons/webcom-status#readme"
+  "homepage": "https://github.com/russellkoons/webcom-status#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.10.14",
+    "morgan": "^1.10.0",
+    "passport": "^0.4.1"
+  }
 }
