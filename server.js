@@ -25,3 +25,11 @@ app.use(express.static('public'));
 app.use(express.json());
 app.use(morgan('common'));
 
+app.get('/', (req, res) => {
+  res.sendFile(__dirname + '/public/index.html');
+});
+
+app.use('*', (req, res) => {
+  return res.status(404).json({ message: 'Page not found' });
+});
+
