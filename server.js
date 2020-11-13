@@ -33,3 +33,23 @@ app.use('*', (req, res) => {
   return res.status(404).json({ message: 'Page not found' });
 });
 
+let server;
+
+function runServer(databaseUrl, port = 42069) {
+  return new Promise((resolve, reject) => {
+    mongoose.connect(databaseUrl, { useNewUrlParser: true }, err => {
+      if (err) {
+        return reject(err);
+      }
+      server = app.listen(port, () => {
+        console.log(`App listening on port ${port}`);
+        resolve();
+      })
+        .on('error', err => {
+          mongoose.disconnect();
+          reject(err);
+        });
+    });
+  });
+}
+
