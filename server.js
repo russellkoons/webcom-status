@@ -7,6 +7,8 @@ const passport = require('passport');
 const mongoose = require('mongoose');
 mongoose.set('useFindAndModify', false);
 
+const { router: authRouter, local, jwt } = require('./auth');
+
 mongoose.Promise = global.Promise;
 
 const app = express();
