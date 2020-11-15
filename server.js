@@ -26,6 +26,10 @@ app.use((req, res, next) => {
 app.use(express.static('public'));
 app.use(express.json());
 app.use(morgan('common'));
+app.use('/auth', authRouter);
+
+passport.use(local);
+passport.use(jwt);
 
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/public/index.html');
