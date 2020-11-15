@@ -35,3 +35,16 @@ const local = new LocalStrategy((username, password, callback) => {
       return callback(err, false);
     });
 });
+
+const jwt = new JwtStrategy(
+  {
+    secretOrKey: JWT_SECRET,
+    jwtFromRequest: ExtractJwt.fromAuthHeaderWithScheme('Bearer'),
+    algorithms: ['HS256'],
+  },
+  (payload, done) => {
+    done(null, payload.user);
+  }
+);
+
+module.exports = { local, jwt }
