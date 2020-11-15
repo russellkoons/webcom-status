@@ -19,4 +19,13 @@ const local = new LocalStrategy((username, password, callback) => {
       }
       return user.validatePassword(password);
     })
+    .then(isValid => {
+      if (!isValid) {
+        return Promise.reject({
+          reason: 'LoginError',
+          message: 'Incorrect username or password',
+        });
+      }
+      return callback(null, user);
+    })
 })
