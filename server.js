@@ -9,6 +9,7 @@ mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
 
 const { router: authRouter, local, jwt } = require('./auth');
+const { router: userRouter } = require('./users');
 
 mongoose.Promise = global.Promise;
 
@@ -28,6 +29,7 @@ app.use(express.static('public'));
 app.use(express.json());
 app.use(morgan('common'));
 app.use('/auth', authRouter);
+app.use('/users', userRouter);
 
 passport.use(local);
 passport.use(jwt);
