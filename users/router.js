@@ -49,6 +49,37 @@ router.post('/', jsonParser, (req, res) => {
       location: tooSmall || tooLarge,
     });
   }
+
+  let { username, password } = req.body;
+
+  return User.find({ username })
+    .count()
+    .then(count => {
+      if (count > 0) {
+        return Promise.reject({
+          code: 422,
+          reason: 'ValidationError',
+          message: 'Useranme already in use',
+          location: 'username',
+        });
+      }
+      return User.hashPassword(password);
+    })
+    .then(hash => {
+      return User.create({
+        username,
+        password: hash
+      });
+    })
+    .catch(err => {
+      if (err.reason === 'ValidationError') {
+        return res.status(err.code).json(err);
+      }
+      return res.status(500).json({
+        code: 500,
+        message: 'Internal server error',
+      });
+    });
 });
 
 module.exports = { router }
