@@ -16,8 +16,6 @@ const statusSchema = mongoose.Schema({
   workflows: Number,
   reports: Number,
   mobileUpdates: Number,
-  pageAudits: Number,
-  auditEnhancements: Number,
 });
 
 statusSchema.methods.serialize = () => {
@@ -33,8 +31,6 @@ statusSchema.methods.serialize = () => {
     workflows: this.workflows,
     reports: this.reports,
     mobileUpdates: this.mobileUpdates,
-    pageAudits: this.pageAudits,
-    auditEnhancements: this.auditEnhancements,
   }
 }
 
