@@ -53,11 +53,11 @@ userSchema.methods.serialize = () => {
   }
 }
 
-userSchema.methods.validatePassword = (password) => {
+userSchema.methods.validatePassword = function(password) {
   return bcrypt.compare(password, this.password);
 }
 
-userSchema.statics.hashPassword = (password) => {
+userSchema.statics.hashPassword = function(password) {
   return bcrypt.hash(password, 10);
 }
 
