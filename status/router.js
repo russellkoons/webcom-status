@@ -23,6 +23,7 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
   Status.create({
     user: req.body.user,
+    date: moment().format('MMMM Do YYYY, h:mm:ss a'),
     tasks: req.body.tasks,
     audits: req.body.audits,
     enhancements: req.body.enhancements,
@@ -47,6 +48,7 @@ router.put('/:id', (req, res) => {
     });
   }
   const updated = {
+    date: moment().format('MMMM Do YYYY, h:mm:ss a'),
     tasks: req.body.tasks,
     audits: req.body.audits,
     enhancements: req.body.enhancements,

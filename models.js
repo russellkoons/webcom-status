@@ -7,6 +7,7 @@ mongoose.Promise = global.Promise;
 
 const statusSchema = mongoose.Schema({
   user: String,
+  date: String,
   tasks: Array,
   audits: Array,
   enhancements: Array,
