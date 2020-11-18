@@ -46,6 +46,7 @@ router.put('/:id', (req, res) => {
       error: 'Request path ID and body ID must match',
     });
   }
+
   const updated = {
     date: moment().format('MMMM Do YYYY, h:mm:ss a'),
     tasks: req.body.tasks,
@@ -58,6 +59,10 @@ router.put('/:id', (req, res) => {
     reports: req.body.reports,
     mobileUpdates: req.body.mobileUpdates,
   }
+
+  Status.findByIdAndUpdate(req.params.id, { $set: updated }, { new: true })
+    .then(status => res.status(204).json(status.serialize()))
+    .catch(() => res.status(500).json({ error: `Failed to update status ${req.params.id}` }));
 });
 
 router.delete('/:id', (req, res) => {
