@@ -1,6 +1,5 @@
 'use strict';
 
-const { static } = require('express');
 const express = require('express');
 const moment = require('moment');
 
