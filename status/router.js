@@ -1,5 +1,6 @@
 'use strict';
 
+const { static } = require('express');
 const express = require('express');
 const moment = require('moment');
 
@@ -16,6 +17,26 @@ router.get('/', (req, res) => {
     .catch(err => {
       console.error(err);
       res.status(500).json({ error: 'ruh roh' });
+    });
+});
+
+router.post('/', (req, res) => {
+  Status.create({
+    user: req.body.user,
+    tasks: req.body.tasks,
+    audits: req.body.audits,
+    enhancements: req.body.enhancements,
+    builds: req.body.builds,
+    uploads: req.body.uploads,
+    tickets: req.body.tickets,
+    workflows: req.body.workflows,
+    reports: req.body.reports,
+    mobileUpdates: req.body.mobileUpdates,
+  })
+    .then(status => res.status(201).json(status.serialize()))
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({ error: 'ohhh nooooooo' });
     });
 });
 
