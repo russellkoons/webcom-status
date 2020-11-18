@@ -40,6 +40,25 @@ router.post('/', (req, res) => {
     });
 });
 
+router.put('/:id', (req, res) => {
+  if (!(req.params.id && req.body.id && req.params.id === req.body.id)) {
+    res.status(400).json({
+      error: 'Request path ID and body ID must match',
+    });
+  }
+  const updated = {
+    tasks: req.body.tasks,
+    audits: req.body.audits,
+    enhancements: req.body.enhancements,
+    builds: req.body.builds,
+    uploads: req.body.uploads,
+    tickets: req.body.tickets,
+    workflows: req.body.workflows,
+    reports: req.body.reports,
+    mobileUpdates: req.body.mobileUpdates,
+  }
+});
+
 router.delete('/:id', (req, res) => {
   Status
     .findByIdAndRemove(req.params.id)
