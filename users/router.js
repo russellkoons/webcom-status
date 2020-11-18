@@ -32,11 +32,11 @@ router.post('/', jsonParser, (req, res) => {
     },
   }
 
-  const tooSmall = Objext.keys(sized).find(field => 
+  const tooSmall = Object.keys(sized).find(field => 
     'min' in sized[field] &&
     req.body[field].trim().length < sized[field].min
   );
-  const tooLarge = Objext.keys(sized).find(field => 
+  const tooLarge = Object.keys(sized).find(field => 
     'max' in sized[field] &&
     req.body[field].trim().length > sized[field].max
   );
@@ -53,13 +53,13 @@ router.post('/', jsonParser, (req, res) => {
   let { username, password } = req.body;
 
   return User.find({ username })
-    .count()
+    .countDocuments()
     .then(count => {
       if (count > 0) {
         return Promise.reject({
           code: 422,
           reason: 'ValidationError',
-          message: 'Useranme already in use',
+          message: 'Username already in use',
           location: 'username',
         });
       }
