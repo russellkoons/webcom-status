@@ -66,3 +66,8 @@ function generateStatus() {
     mobileUpdates: faker.random.number(),
   }
 }
+
+function deleteDb() {
+  console.warn('Deleting test database');
+  return mongoose.connection.dropDatabase();
+}
