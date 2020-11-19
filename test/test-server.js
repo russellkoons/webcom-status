@@ -227,7 +227,6 @@ describe('User Router', () => {
           password
         })
         .then(res => {
-          console.log(res.body);
           expect(res).to.have.status(201);
           expect(res.body).to.be.a('object');
           expect(res.body).to.have.keys('username');

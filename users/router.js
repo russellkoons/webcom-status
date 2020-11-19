@@ -51,7 +51,6 @@ router.post('/', jsonParser, (req, res) => {
   }
 
   let { username, password } = req.body;
-  console.log(username);
 
   return User.find({ username })
     .countDocuments()
