@@ -11,6 +11,7 @@ const expect = chai.expect;
 const { Status, User } = require('../models');
 const { app, runServer, closeServer } = require('../server');
 const { TEST_DATABASE_URL, JWT_SECRET } = require('../config');
+const { internet } = require('faker');
 
 chai.use(chaiHttp);
 
@@ -71,3 +72,11 @@ function deleteDb() {
   console.warn('Deleting test database');
   return mongoose.connection.dropDatabase();
 }
+
+describe('Testing the server', () => {
+  it('should respond', () => {
+    return chai.request(app)
+      .get('/')
+      .then(res => expect(res).to.have.status(200));
+  });
+});
