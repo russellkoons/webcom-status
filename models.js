@@ -23,6 +23,7 @@ statusSchema.methods.serialize = () => {
   return {
     id: this._id,
     user: this.user,
+    date: this.date,
     tasks: this.tasks,
     audits: this.audits,
     enhancements: this.enhancements,
