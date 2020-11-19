@@ -19,7 +19,7 @@ const statusSchema = mongoose.Schema({
   mobileUpdates: Number,
 });
 
-statusSchema.methods.serialize = () => {
+statusSchema.methods.serialize = function() {
   return {
     id: this._id,
     user: this.user,
@@ -48,7 +48,7 @@ const userSchema = mongoose.Schema({
   }
 });
 
-userSchema.methods.serialize = () => {
+userSchema.methods.serialize = function() {
   return {
     username: this.username || '',
   }

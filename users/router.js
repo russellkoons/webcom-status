@@ -51,6 +51,7 @@ router.post('/', jsonParser, (req, res) => {
   }
 
   let { username, password } = req.body;
+  console.log(username);
 
   return User.find({ username })
     .countDocuments()
@@ -66,10 +67,15 @@ router.post('/', jsonParser, (req, res) => {
       return User.hashPassword(password);
     })
     .then(hash => {
-      return User.create({
+      User.create({
         username,
         password: hash
-      });
+      })
+        .then(user => res.status(201).json(user.serialize()))
+        .catch(err => {
+          console.error(err);
+          res.status(500).json({ error: 'bwahhhhhhh???' });
+        });
     })
     .catch(err => {
       if (err.reason === 'ValidationError') {
