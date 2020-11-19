@@ -13,3 +13,52 @@ const { app, runServer, closeServer } = require('../server');
 const { TEST_DATABASE_URL, JWT_SECRET } = require('../config');
 
 chai.use(chaiHttp);
+
+function seedStatus() {
+  console.info('Seeding statuses to test server');
+  const seedStatus = [];
+}
+
+function generateStatus() {
+  return {
+    user: faker.random.findName(),
+    date: new Date(),
+    tasks: [faker.random.words(), faker.random.words()],
+    enhancements: [
+      {
+        page: faker.random.word(),
+        change: faker.random.words(),
+      },
+      {
+        page: faker.random.word(),
+        change: faker.random.words(),
+      },
+      {
+        page: faker.random.word(),
+        change: faker.random.words(),
+      },
+    ],
+    builds: [
+      {
+        page: faker.random.word(),
+        status: faker.random.word(),
+        date: new Date(),
+      },
+      {
+        page: faker.random.word(),
+        status: faker.random.word(),
+        date: new Date(),
+      },
+      {
+        page: faker.random.word(),
+        status: faker.random.word(),
+        date: new Date(),
+      },
+    ],
+    uploads: faker.random.number(),
+    tickets: faker.random.number(),
+    workflows: faker.random.number(),
+    reports: faker.random.number(),
+    mobileUpdates: faker.random.number(),
+  }
+}
