@@ -17,6 +17,10 @@ chai.use(chaiHttp);
 function seedStatus() {
   console.info('Seeding statuses to test server');
   const seedStatus = [];
+  for (let i = 0; i < 5; i++) {
+    seedStatus.push(generateStatus);
+  }
+  return Status.insertMany(seedStatus);
 }
 
 function generateStatus() {
