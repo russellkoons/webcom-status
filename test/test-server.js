@@ -93,10 +93,8 @@ describe('User Router', () => {
     return closeServer();
   });
 
-  // beforeEach(() => { });
-
   afterEach(() => {
-    return User.deleteMany({});
+    return deleteDb();
   });
 
   describe('POST endpoint', () => {
