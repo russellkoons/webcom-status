@@ -14,6 +14,8 @@ const { router: statusRouter } = require('./status');
 
 mongoose.Promise = global.Promise;
 
+const { DATABASE_URL, PORT } = require('./config');
+
 const app = express();
 
 app.use((req, res, next) => {
@@ -46,7 +48,7 @@ app.use('*', (req, res) => {
 
 let server;
 
-function runServer(databaseUrl, port = 42069) {
+function runServer(databaseUrl, port = PORT) {
   return new Promise((resolve, reject) => {
     mongoose.connect(databaseUrl, { useNewUrlParser: true, useUnifiedTopology: true }, err => {
       if (err) {
@@ -79,7 +81,7 @@ function closeServer() {
 }
 
 if (require.main === module) {
-  runServer('mongodb://localhost/webcom').catch(err => console.error(err));
+  runServer(DATABASE_URL).catch(err => console.error(err));
 }
 
 module.exports = { app, runServer, closeServer }
