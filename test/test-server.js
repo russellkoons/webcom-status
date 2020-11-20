@@ -28,6 +28,7 @@ function generateStatus() {
     user: faker.random.word(),
     date: new Date(),
     tasks: [faker.random.words(), faker.random.words()],
+    audits: [faker.random.word(), faker.random.word()],
     enhancements: [
       {
         page: faker.random.word(),

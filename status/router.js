@@ -9,9 +9,11 @@ const router = express.Router();
 
 router.get('/', (req, res) => {
   Status
-    .find()
-    .then(status => {
-      res.json(status => status.serialize());
+    .find({})
+    .then(() => {
+      res.json(status => {
+        return status.serialize()
+      });
     })
     .catch(err => {
       console.error(err);
