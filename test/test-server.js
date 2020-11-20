@@ -80,6 +80,24 @@ describe('Testing the server', () => {
   });
 });
 
+describe('Status Router', () => {
+  before(() => {
+    return runServer(TEST_DATABASE_URL);
+  });
+
+  beforeEach(() => {
+    return seedStatus();
+  });
+
+  afterEach(() => {
+    return deleteDb();
+  });
+
+  after(() => {
+    return closeServer();
+  });
+});
+
 describe('User Router', () => {
   const username = 'testUser';
   const password = 'password';
