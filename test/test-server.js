@@ -113,6 +113,24 @@ describe('Status Router', () => {
           expect(res.body).to.have.length(count);
         });
     });
+
+    it('should return statuses with the right fields', () => {
+      let status;
+      return chai.request(app)
+        .get('/status')
+        .then(res => {
+          expect(res).to.have.status(200);
+          expect(res).to.be.json;
+          expect(res.body).to.be.a('array');
+          expect(res.body).to.have.lengthOf.at.least(1);
+          res.body.forEach(stat => {
+            expect(stat).to.be.a('object');
+            expect(stat).to.include.keys(
+              'id', 'user', 'date', 'tasks', 'audits', 'enhancements', 'builds', 'uploads', 'tickets', 'workflows', 'reports', 'mobileUpdates'
+            );
+          })
+        })
+    });
   });
 });
 
