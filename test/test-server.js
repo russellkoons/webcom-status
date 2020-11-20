@@ -222,7 +222,35 @@ describe('Status Router', () => {
           expect(res.body.workflows).to.equal(newStatus.workflows);
           expect(res.body.reports).to.equal(newStatus.reports);
           expect(res.body.mobileUpdates).to.equal(newStatus.mobileUpdates);
-        });
+          return Status.findById(res.body.id);
+        })
+        .then(status => {
+          expect(status.user).to.equal(newStatus.user);
+          expect(status.tasks[0]).to.equal(newStatus.tasks[0]);
+          expect(status.tasks[1]).to.equal(newStatus.tasks[1]);
+          expect(status.audits[0]).to.equal(newStatus.audits[0]);
+          expect(status.audits[1]).to.equal(newStatus.audits[1]);
+          expect(status.enhancements[0].page).to.equal(newStatus.enhancements[0].page);
+          expect(status.enhancements[0].change).to.equal(newStatus.enhancements[0].change);
+          expect(status.enhancements[1].page).to.equal(newStatus.enhancements[1].page);
+          expect(status.enhancements[1].change).to.equal(newStatus.enhancements[1].change);
+          expect(status.enhancements[2].page).to.equal(newStatus.enhancements[2].page);
+          expect(status.enhancements[2].change).to.equal(newStatus.enhancements[2].change);
+          expect(status.builds[0].page).to.equal(newStatus.builds[0].page);
+          expect(status.builds[0].status).to.equal(newStatus.builds[0].status);
+          expect(status.builds[0].date).to.equal(newStatus.builds[0].date);
+          expect(status.builds[1].page).to.equal(newStatus.builds[1].page);
+          expect(status.builds[1].status).to.equal(newStatus.builds[1].status);
+          expect(status.builds[1].date).to.equal(newStatus.builds[1].date);
+          expect(status.builds[2].page).to.equal(newStatus.builds[2].page);
+          expect(status.builds[2].status).to.equal(newStatus.builds[2].status);
+          expect(status.builds[2].date).to.equal(newStatus.builds[2].date);
+          expect(status.uploads).to.equal(newStatus.uploads);
+          expect(status.tickets).to.equal(newStatus.tickets);
+          expect(status.workflows).to.equal(newStatus.workflows);
+          expect(status.reports).to.equal(newStatus.reports);
+          expect(status.mobileUpdates).to.equal(newStatus.mobileUpdates);
+        })
     });
   });
 
