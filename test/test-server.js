@@ -301,7 +301,7 @@ describe('Auth Router', () => {
   });
 
   afterEach(() => {
-    return User.remove({});
+    return User.deleteOne({});
   });
 
   describe('Login', () => {
