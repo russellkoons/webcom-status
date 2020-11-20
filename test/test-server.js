@@ -250,12 +250,32 @@ describe('Status Router', () => {
           expect(status.workflows).to.equal(newStatus.workflows);
           expect(status.reports).to.equal(newStatus.reports);
           expect(status.mobileUpdates).to.equal(newStatus.mobileUpdates);
-        })
+        });
     });
   });
 
   describe('PUT endpoint', () => {
-
+    it('should update fields you send', () => {
+      const update = {
+        uploads: 25,
+        tickets: 37,
+      }
+      return Status.findOne()
+        .then(status => {
+          update.id = status.id;
+          return chai.request(app)
+            .put(`/status/${status.id}`)
+            .send(update);
+        })
+        .then(res => {
+          expect(res).to.have.status(204);
+          return Status.findById(update.id);
+        })
+        .then(status => {
+          expect(status.uploads).to.equal(update.uploads);
+          expect(status.tickets).to.equal(update.tickets);
+        });
+    });
   });
 
   describe('DELETE endpoint', () => {
