@@ -47,17 +47,17 @@ function generateStatus() {
       {
         page: faker.random.word(),
         status: faker.random.word(),
-        date: new Date(),
+        date: '11/20/20',
       },
       {
         page: faker.random.word(),
         status: faker.random.word(),
-        date: new Date(),
+        date: '11/20/20',
       },
       {
         page: faker.random.word(),
         status: faker.random.word(),
-        date: new Date(),
+        date: '11/20/20',
       },
     ],
     uploads: faker.random.number(),
@@ -146,10 +146,39 @@ describe('Status Router', () => {
             expect(stat.builds[2]).to.include.keys(
               'page', 'status', 'date'
             );
-            status = res.body[0];
-            return Status.findById(status.id);
           })
+          status = res.body[0];
+          return Status.findById(status.id);
         })
+        .then(s => {
+          expect(status.id).to.equal(s.id);
+          expect(status.user).to.equal(s.user);
+          expect(status.date).to.equal(s.date);
+          expect(status.tasks[0]).to.equal(s.tasks[0]);
+          expect(status.tasks[1]).to.equal(s.tasks[1]);
+          expect(status.audits[0]).to.equal(s.audits[0]);
+          expect(status.audits[1]).to.equal(s.audits[1]);
+          expect(status.enhancements[0].page).to.equal(s.enhancements[0].page);
+          expect(status.enhancements[0].change).to.equal(s.enhancements[0].change);
+          expect(status.enhancements[1].page).to.equal(s.enhancements[1].page);
+          expect(status.enhancements[1].change).to.equal(s.enhancements[1].change);
+          expect(status.enhancements[2].page).to.equal(s.enhancements[2].page);
+          expect(status.enhancements[2].change).to.equal(s.enhancements[2].change);
+          expect(status.builds[0].page).to.equal(s.builds[0].page);
+          expect(status.builds[0].status).to.equal(s.builds[0].status);
+          expect(status.builds[0].date).to.equal(s.builds[0].date);
+          expect(status.builds[1].page).to.equal(s.builds[1].page);
+          expect(status.builds[1].status).to.equal(s.builds[1].status);
+          expect(status.builds[1].date).to.equal(s.builds[1].date);
+          expect(status.builds[2].page).to.equal(s.builds[2].page);
+          expect(status.builds[2].status).to.equal(s.builds[2].status);
+          expect(status.builds[2].date).to.equal(s.builds[2].date);
+          expect(status.uploads).to.equal(s.uploads);
+          expect(status.tickets).to.equal(s.tickets);
+          expect(status.workflows).to.equal(s.workflows);
+          expect(status.reports).to.equal(s.reports);
+          expect(status.mobileUpdates).to.equal(s.mobileUpdates);
+        });
     });
   });
 });
