@@ -18,14 +18,14 @@ function seedStatus() {
   console.info('Seeding statuses to test server');
   const seedStatus = [];
   for (let i = 0; i < 5; i++) {
-    seedStatus.push(generateStatus);
+    seedStatus.push(generateStatus());
   }
   return Status.insertMany(seedStatus);
 }
 
 function generateStatus() {
   return {
-    user: faker.random.findName(),
+    user: faker.random.word(),
     date: new Date(),
     tasks: [faker.random.words(), faker.random.words()],
     enhancements: [
@@ -95,6 +95,23 @@ describe('Status Router', () => {
 
   after(() => {
     return closeServer();
+  });
+
+  describe('GET endpoint', () => {
+    it('should return statuses', () => {
+      let res;
+      return chai.request(app)
+        .get('/status')
+        .then(r => {
+          res = r;
+          expect(res).to.have.status(200);
+          expect(res.body).to.have.lengthOf.at.least(1);
+          return Status.countDocuments();
+        })
+        .then(count => {
+          expect(res.body).to.have.length(count);
+        });
+    });
   });
 });
 
