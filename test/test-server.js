@@ -183,7 +183,47 @@ describe('Status Router', () => {
   });
 
   describe('POST endpoint', () => {
-
+    it('should make a new status', () => {
+      const newStatus = generateStatus();
+      return chai.request(app)
+        .post('/status')
+        .send(newStatus)
+        .then(res => {
+          expect(res).to.have.status(201);
+          expect(res).to.be.json;
+          expect(res.body).to.be.a('object');
+          expect(res.body).to.include.keys(
+            'id', 'user', 'date', 'tasks', 'audits', 'enhancements', 'builds', 'uploads', 'tickets', 'workflows', 'reports', 'mobileUpdates'
+          );
+          expect(res.body.id).to.not.be.null;
+          expect(res.body.user).to.equal(newStatus.user);
+          expect(res.body.date).to.not.be.null;
+          expect(res.body.tasks[0]).to.equal(newStatus.tasks[0]);
+          expect(res.body.tasks[1]).to.equal(newStatus.tasks[1]);
+          expect(res.body.audits[0]).to.equal(newStatus.audits[0]);
+          expect(res.body.audits[1]).to.equal(newStatus.audits[1]);
+          expect(res.body.enhancements[0].page).to.equal(newStatus.enhancements[0].page);
+          expect(res.body.enhancements[0].change).to.equal(newStatus.enhancements[0].change);
+          expect(res.body.enhancements[1].page).to.equal(newStatus.enhancements[1].page);
+          expect(res.body.enhancements[1].change).to.equal(newStatus.enhancements[1].change);
+          expect(res.body.enhancements[2].page).to.equal(newStatus.enhancements[2].page);
+          expect(res.body.enhancements[2].change).to.equal(newStatus.enhancements[2].change);
+          expect(res.body.builds[0].page).to.equal(newStatus.builds[0].page);
+          expect(res.body.builds[0].status).to.equal(newStatus.builds[0].status);
+          expect(res.body.builds[0].date).to.equal(newStatus.builds[0].date);
+          expect(res.body.builds[1].page).to.equal(newStatus.builds[1].page);
+          expect(res.body.builds[1].status).to.equal(newStatus.builds[1].status);
+          expect(res.body.builds[1].date).to.equal(newStatus.builds[1].date);
+          expect(res.body.builds[2].page).to.equal(newStatus.builds[2].page);
+          expect(res.body.builds[2].status).to.equal(newStatus.builds[2].status);
+          expect(res.body.builds[2].date).to.equal(newStatus.builds[2].date);
+          expect(res.body.uploads).to.equal(newStatus.uploads);
+          expect(res.body.tickets).to.equal(newStatus.tickets);
+          expect(res.body.workflows).to.equal(newStatus.workflows);
+          expect(res.body.reports).to.equal(newStatus.reports);
+          expect(res.body.mobileUpdates).to.equal(newStatus.mobileUpdates);
+        });
+    });
   });
 
   describe('PUT endpoint', () => {
