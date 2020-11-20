@@ -10,10 +10,8 @@ const router = express.Router();
 router.get('/', (req, res) => {
   Status
     .find({})
-    .then(() => {
-      res.json(status => {
-        return status.serialize()
-      });
+    .then(statuses => {
+      res.status(200).json(statuses.map(status => status.serialize()));
     })
     .catch(err => {
       console.error(err);
