@@ -181,6 +181,33 @@ describe('Status Router', () => {
         });
     });
   });
+
+  describe('POST endpoint', () => {
+
+  });
+
+  describe('PUT endpoint', () => {
+
+  });
+
+  describe('DELETE endpoint', () => {
+    it('delete status by id', () => {
+      let status;
+      return Status
+        .findOne()
+        .then(stat => {
+          status = stat;
+          return chai.request(app).delete(`/status/${status.id}`);
+        })
+        .then(res => {
+          expect(res).to.have.status(204);
+          return Status.findById(status.id);
+        })
+        .then(stat => {
+          expect(stat).to.be.null;
+        });
+    });
+  });
 });
 
 describe('User Router', () => {
