@@ -69,7 +69,7 @@ router.delete('/:id', (req, res) => {
   Status
     .findByIdAndRemove(req.params.id)
     .then(() => {
-      console.log(`Deleting lod ${req.params.id}`);
+      console.log(`Deleting log ${req.params.id}`);
       res.status(204).json({ message: 'Successful deletion' });
     })
     .catch(err => {
