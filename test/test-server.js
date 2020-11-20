@@ -128,6 +128,26 @@ describe('Status Router', () => {
             expect(stat).to.include.keys(
               'id', 'user', 'date', 'tasks', 'audits', 'enhancements', 'builds', 'uploads', 'tickets', 'workflows', 'reports', 'mobileUpdates'
             );
+            expect(stat.enhancements[0]).to.include.keys(
+              'page', 'change'
+            );
+            expect(stat.enhancements[1]).to.include.keys(
+              'page', 'change'
+            );
+            expect(stat.enhancements[2]).to.include.keys(
+              'page', 'change'
+            );
+            expect(stat.builds[0]).to.include.keys(
+              'page', 'status', 'date'
+            );
+            expect(stat.builds[1]).to.include.keys(
+              'page', 'status', 'date'
+            );
+            expect(stat.builds[2]).to.include.keys(
+              'page', 'status', 'date'
+            );
+            status = res.body[0];
+            return Status.findById(status.id);
           })
         })
     });
