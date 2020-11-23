@@ -77,8 +77,37 @@ function makeCreds() {
   logIn(creds);
 }
 
+function refreshToken(token) {
+  fetch('/auth/refresh', {
+    method: 'post',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    }
+  })
+    .then(res => {
+      if (res.ok) {
+        return res.json();
+      } else {
+        throw new Error(res.statusText);
+      }
+    })
+    .then(resJson => {
+      let token = resJson.authToken;
+      localStorage.setItem('authToken', token);
+      displayPage();
+    })
+    .catch(err => console.log(err));
+}
+
+function parseJwt(token) {
+  var base64Url = token.split('.')[1];
+  var base64 = base64Url.replace('-', '+').replace('_', '/');
+  return JSON.parse(window.atob(base64));
+};
+
 function displayPage() {
-  token = localStorage.getItem('authToken');
+  let token = localStorage.getItem('authToken');
   if (token === null) {
     $('#user-signout').empty();
     $('#login-and-signup').removeClass('hidden');
@@ -90,13 +119,16 @@ function displayPage() {
     if (exp < date)  {
       signOut();
     } else {
-      refreshToken();
-      user = parse.user.username;
+      refreshToken(token);
+      let user = parse.user.username;
       $('#user-signout').removeClass('hidden').append(`
         <p>Welcome ${user}!</p>
         <button type="button" onclick="signOut();">Sign Out</button><br/>
       `);
-      getWorkouts();
     };
   };
 }
+
+$(function() {
+  displayPage();
+});
