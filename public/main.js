@@ -109,7 +109,8 @@ function displayPage() {
   let token = localStorage.getItem('authToken');
   if (token === null) {
     $('#user-signout').empty();
-    $('#login-and-signup').removeClass('hidden');
+    $('#login-signup').removeClass('hidden');
+    return;
   }
   const parse = parseJwt(token);
   const exp = parse.exp * 1000;
@@ -117,9 +118,11 @@ function displayPage() {
   const date = d.getTime();
   if (exp < date)  {
     signOut();
+    return;
   } 
   refreshToken(token);
   let user = parse.user.username;
+  $('#login-signup').addClass('hidden');
   $('#user-signout').removeClass('hidden').append(`
     <p>Welcome ${user}!</p>
     <button type="button" onclick="signOut();">Sign Out</button><br/>
