@@ -10,7 +10,7 @@ function logIn(data) {
   })
     .then(res => {
       if (res.ok) {
-        user = data.username;
+        let user = data.username;
         $('#user-signout').append(`
           <p>Welcome ${user}!</p>
           <button type="button" onclick="signOut();">Sign Out</button><br/>
@@ -21,11 +21,12 @@ function logIn(data) {
       }
     })
     .then(resJson => {
-      token = resJson.authToken;
+      let token = resJson.authToken;
       localStorage.setItem('authToken', token);
       $('#login-error').empty().append(`<p>${token}</p>`);
     })
     .catch(err => {
+      console.error(err);
       $('#login-error').empty().append(`<p class="alert">Username or password is incorrect</p>`);
     });
 }
