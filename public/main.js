@@ -1,5 +1,10 @@
 'use strict';
 
+function signOut() {
+  localStorage.removeItem('authToken');
+  displayPage();
+}
+
 function logIn(data) {
   fetch('/auth/login', {
     method: 'post',
@@ -70,4 +75,28 @@ function makeCreds() {
     'password': $('#loginpassword').val()
   }
   logIn(creds);
+}
+
+function displayPage() {
+  token = localStorage.getItem('authToken');
+  if (token === null) {
+    $('#user-signout').empty();
+    $('#login-and-signup').removeClass('hidden');
+  } else {
+    const parse = parseJwt(token);
+    const exp = parse.exp * 1000;
+    const d = new Date();
+    const date = d.getTime();
+    if (exp < date)  {
+      signOut();
+    } else {
+      refreshToken();
+      user = parse.user.username;
+      $('#user-signout').removeClass('hidden').append(`
+        <p>Welcome ${user}!</p>
+        <button type="button" onclick="signOut();">Sign Out</button><br/>
+      `);
+      getWorkouts();
+    };
+  };
 }
