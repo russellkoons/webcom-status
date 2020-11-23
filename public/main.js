@@ -95,7 +95,6 @@ function refreshToken(token) {
     .then(resJson => {
       let token = resJson.authToken;
       localStorage.setItem('authToken', token);
-      displayPage();
     })
     .catch(err => console.log(err));
 }
@@ -118,16 +117,13 @@ function displayPage() {
   const date = d.getTime();
   if (exp < date)  {
     signOut();
-  } else if (exp - date <= 604800000) {
-    console.log('refreshing token');
-    refreshToken(token);
-  } else {
-    let user = parse.user.username;
-    $('#user-signout').removeClass('hidden').append(`
-      <p>Welcome ${user}!</p>
-      <button type="button" onclick="signOut();">Sign Out</button><br/>
-    `);
-  }
+  } 
+  refreshToken(token);
+  let user = parse.user.username;
+  $('#user-signout').removeClass('hidden').append(`
+    <p>Welcome ${user}!</p>
+    <button type="button" onclick="signOut();">Sign Out</button><br/>
+  `);
 }
 
 $(function() {
