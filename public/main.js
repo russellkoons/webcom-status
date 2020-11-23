@@ -111,22 +111,23 @@ function displayPage() {
   if (token === null) {
     $('#user-signout').empty();
     $('#login-and-signup').removeClass('hidden');
+  }
+  const parse = parseJwt(token);
+  const exp = parse.exp * 1000;
+  const d = new Date();
+  const date = d.getTime();
+  if (exp < date)  {
+    signOut();
+  } else if (exp - date <= 604800000) {
+    console.log('refreshing token');
+    refreshToken(token);
   } else {
-    const parse = parseJwt(token);
-    const exp = parse.exp * 1000;
-    const d = new Date();
-    const date = d.getTime();
-    if (exp < date)  {
-      signOut();
-    } else {
-      refreshToken(token);
-      let user = parse.user.username;
-      $('#user-signout').removeClass('hidden').append(`
-        <p>Welcome ${user}!</p>
-        <button type="button" onclick="signOut();">Sign Out</button><br/>
-      `);
-    };
-  };
+    let user = parse.user.username;
+    $('#user-signout').removeClass('hidden').append(`
+      <p>Welcome ${user}!</p>
+      <button type="button" onclick="signOut();">Sign Out</button><br/>
+    `);
+  }
 }
 
 $(function() {
