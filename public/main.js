@@ -104,6 +104,7 @@ function displayPage() {
   let token = localStorage.getItem('authToken');
   if (token === null) {
     $('#user-signout').empty();
+    $('#form-result').addClass('hidden');
     $('#login-signup').removeClass('hidden');
     return;
   }
