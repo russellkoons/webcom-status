@@ -118,6 +118,7 @@ function displayPage() {
   refreshToken(token);
   let user = parse.user.username;
   $('#login-signup').addClass('hidden');
+  $('#form-result').removeClass('hidden');
   $('#user-signout').removeClass('hidden').append(`
     <p>Welcome ${user}!</p>
     <button type="button" onclick="signOut();">Sign Out</button><br/>

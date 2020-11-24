@@ -10,32 +10,40 @@
 <body>
   <header>
     <h1>WebCom Weekly Status Generator</h1>
+    <section id="user-signout"></section>
+    <section id="login-signup">
+      <form id="login" onsubmit="event.preventDefault(); makeCreds();">
+        <h3>Login</h3>
+        <label for="loginusername">Username</label>
+        <input type="text" name="loginusername" id="loginusername" required><br/>
+        <label for="loginpassword">Password</label>
+        <input type="password" name="loginpassword" id="loginpassword" required><br/>
+        <input type="submit" value="Login" id="js-login">
+        <div id="login-error">
+        </div>
+      </form>
+      <form id="signup" onsubmit="event.preventDefault(); signUp();">
+        <h3>Sign Up</h3>
+        <label for="signupusername">Username</label>
+        <input type="text" name="signupusername" id="signupusername" maxlength="16" required><br/>
+        <label for="signuppassword">Password</label>
+        <input type="password" name="signuppassword" id="signuppassword" minlength="8" maxlength="72" required><br/>
+        <label for="passconfirm">Re-enter your password</label>
+        <input type="password" name="passconfirm" id="passconfirm" minlength="8" maxlength="72" required><br/>
+        <input type="submit" value="Join" id="js-signup">
+        <div id="signup-error">
+        </div>
+      </form>
+    </section>
   </header>
-  <section id="user-signout"></section>
-  <section id="login-signup">
-    <form id="login" onsubmit="event.preventDefault(); makeCreds();">
-      <h3>Login</h3>
-      <label for="loginusername">Username</label>
-      <input type="text" name="loginusername" id="loginusername" required><br/>
-      <label for="loginpassword">Password</label>
-      <input type="password" name="loginpassword" id="loginpassword" required><br/>
-      <input type="submit" value="Login" id="js-login">
-      <div id="login-error">
-      </div>
-    </form>
-    <form id="signup" onsubmit="event.preventDefault(); signUp();">
-      <h3>Sign Up</h3>
-      <label for="signupusername">Username</label>
-      <input type="text" name="signupusername" id="signupusername" maxlength="16" required><br/>
-      <label for="signuppassword">Password</label>
-      <input type="password" name="signuppassword" id="signuppassword" minlength="8" maxlength="72" required><br/>
-      <label for="passconfirm">Re-enter your password</label>
-      <input type="password" name="passconfirm" id="passconfirm" minlength="8" maxlength="72" required><br/>
-      <input type="submit" value="Join" id="js-signup">
-      <div id="signup-error">
-      </div>
-    </form>
-  </section>
+  <main id="form-result" class="hidden">
+    <section id="status-form">
+      <form></form>
+    </section>
+    <section>
+      <textarea id="result"></textarea>
+    </section>
+  </main>
   <footer>
     <p>Created and coded by Russell Koons</p>
     <p>2020</p>
