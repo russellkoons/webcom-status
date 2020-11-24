@@ -15,11 +15,6 @@ function logIn(data) {
   })
     .then(res => {
       if (res.ok) {
-        let user = data.username;
-        $('#user-signout').append(`
-          <p>Welcome ${user}!</p>
-          <button type="button" onclick="signOut();">Sign Out</button><br/>
-        `)
         return res.json();
       } else {
         throw new Error(res.statusText);
@@ -28,7 +23,7 @@ function logIn(data) {
     .then(resJson => {
       let token = resJson.authToken;
       localStorage.setItem('authToken', token);
-      $('#login-error').empty().append(`<p>${token}</p>`);
+      displayPage();
     })
     .catch(err => {
       console.error(err);
