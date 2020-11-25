@@ -126,6 +126,14 @@ function displayPage() {
   `);
 }
 
+function testingTextarea() {
+  const testString = 
+  `hello there
+ hello there`;
+  $('#result').append(testString);
+}
+
 $(function() {
   displayPage();
+  testingTextarea();
 });
