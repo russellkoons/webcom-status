@@ -126,14 +126,16 @@ function displayPage() {
   `);
 }
 
-const testString = `hello there
- hello there`;
+// These were built to test the textarea formatting, keeping them here for future reference
 
-function testingTextarea() {
-  $('#result').append(testString);
-}
+// const testString = `hello there
+//  hello there`;
+
+// function testingTextarea() {
+//   $('#result').append(testString);
+// }
 
 $(function() {
   displayPage();
-  testingTextarea();
+  // testingTextarea();
 });
