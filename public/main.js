@@ -126,10 +126,10 @@ function displayPage() {
   `);
 }
 
-function testingTextarea() {
-  const testString = 
-  `hello there
+const testString = `hello there
  hello there`;
+
+function testingTextarea() {
   $('#result').append(testString);
 }
 
