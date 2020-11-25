@@ -128,8 +128,7 @@ function displayPage() {
 
 // These were built to test the textarea formatting, keeping them here for future reference
 
-// const testString = `hello there
-//  hello there`;
+// const testString = '**hello there**\n\n- hello there\n - line 3';
 
 // function testingTextarea() {
 //   $('#result').append(testString);
