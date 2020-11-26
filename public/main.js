@@ -47,9 +47,25 @@ let testStatus = {
   reviews: 7
 }
 
+let testStatus2 = {
+  user: 'russell',
+  date: new Date(),
+  tasks: [],
+  audits: [],
+  enhancements: [],
+  builds: [],
+  uploads: 0,
+  tickets: 0,
+  workflows: 0,
+  reports: 0,
+  mobileUpdates: 0,
+  reviews: 0
+}
+
 function createString(status) {
-  let str = '**List of notable completions this week**\n\n';
+  let str = '**List of notable completions this week**';
   if (status.tasks.length > 0) {
+    str+= '\n\n';
     for (let i = 0; i < status.tasks.length; i++) {
       str += `- ${status.tasks[i]}\n`;
     }
@@ -247,5 +263,5 @@ function displayPage() {
 $(function() {
   displayPage();
   // testingTextarea();
-  createString(testStatus);
+  createString(testStatus2);
 });
