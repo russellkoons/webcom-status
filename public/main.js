@@ -94,6 +94,10 @@ function createString(status) {
   if (status.mobileUpdates > 0) {
     str += `${status.mobileUpdates}\n\n`;
   }
+  str += '**Number of Pages Audited** - list the name of the pages and the enhancements in "List of notable completions this week" section\n';
+  if (status.audits.length > 0) {
+    str += `${status.audits.length}\n\n`;
+  }
   $('#result').append(str);
 }
 
