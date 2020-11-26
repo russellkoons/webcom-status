@@ -43,7 +43,8 @@ let testStatus = {
   tickets: 7,
   workflows: 63,
   reports: 12,
-  mobileUpdates: 4
+  mobileUpdates: 4,
+  reviews: 7
 }
 
 function createString(status) {
