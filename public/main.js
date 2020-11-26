@@ -48,8 +48,10 @@ let testStatus = {
 
 function createString(status) {
   let str = '**List of notable completions this week**\n\n';
-  for (let i = 0; i < status.tasks.length; i++) {
-    str += `- ${status.tasks[i]}\n`;
+  if (status.tasks.length > 0) {
+    for (let i = 0; i < status.tasks.length; i++) {
+      str += `- ${status.tasks[i]}\n`;
+    }
   }
   if (status.audits.length > 0) {
     str += '- Page audits:\n';
@@ -62,6 +64,14 @@ function createString(status) {
     for (let i = 0; i < status.enhancements.length; i++) {
       str += ` - ${status.enhancements[i].page} - ${status.enhancements[i].change}\n`
     }
+  }
+  str += '\n**Page Builds**\n';
+  if (status.builds.length > 0) {
+    str += '\n';
+    for (let i = 0; i < status.builds.length; i++) {
+      str += `- ${status.builds[i].page} - ${status.builds[i].status} - ${status.builds[i].date}\n`;
+    }
+    str += '\n';
   }
   $('#result').append(str);
 }
