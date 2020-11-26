@@ -46,6 +46,14 @@ let testStatus = {
   mobileUpdates: 4
 }
 
+function createString(status) {
+  let str = '**List of notable completions this week**\n\n';
+  for (let i = 0; i < status.tasks.length; i++) {
+    str += `- ${status.tasks[i]}\n`;
+  }
+  $('#result').append(str);
+}
+
 function signOut() {
   localStorage.removeItem('authToken');
   displayPage();
@@ -183,4 +191,5 @@ function displayPage() {
 $(function() {
   displayPage();
   // testingTextarea();
+  createString(testStatus);
 });
