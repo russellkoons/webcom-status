@@ -98,6 +98,14 @@ function createString(status) {
   if (status.audits.length > 0) {
     str += `${status.audits.length}\n\n`;
   }
+  str += '**Number of Content Author reviews**\n';
+  if (status.reviews > 0) {
+    str += `${status.reviews}\n\n`;
+  }
+  str += '**Number of Page Audit Enhancements**\n';
+  if (status.enhancements.length > 0) {
+    str += `${status.enhancements.length}`;
+  }
   $('#result').append(str);
 }
 
