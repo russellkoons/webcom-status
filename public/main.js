@@ -51,6 +51,18 @@ function createString(status) {
   for (let i = 0; i < status.tasks.length; i++) {
     str += `- ${status.tasks[i]}\n`;
   }
+  if (status.audits.length > 0) {
+    str += '- Page audits:\n';
+    for (let i = 0; i < status.audits.length; i++) {
+      str += ` - ${status.audits[i]}\n`;
+    }
+  }
+  if (status.enhancements.length > 0) {
+    str += '- Audit enhancements:\n';
+    for (let i = 0; i < status.enhancements.length; i++) {
+      str += ` - ${status.enhancements[i].page} - ${status.enhancements[i].change}\n`
+    }
+  }
   $('#result').append(str);
 }
 
