@@ -3,16 +3,8 @@
 let testStatus = {
   user: 'russell',
   date: new Date(),
-  tasks: [
-    'Task 1',
-    'Task 2',
-    'Task 3'
-  ],
-  audits: [
-    'Page 1',
-    'Page 2',
-    'Page 3'
-  ],
+  tasks: ['Task 1', 'Task 2', 'Task 3'],
+  audits: ['Page 1', 'Page 2', 'Page 3'],
   enhancements: [
     {
       page: 'Page 1',
@@ -263,5 +255,5 @@ function displayPage() {
 $(function() {
   displayPage();
   // testingTextarea();
-  createString(testStatus2);
+  createString(testStatus);
 });
