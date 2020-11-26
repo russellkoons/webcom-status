@@ -77,7 +77,22 @@ function createString(status) {
   if (status.uploads > 0) {
     str += `${status.uploads}\n\n`;
   }
-
+  str += '**Number of completed tickets** (CR and other)\n';
+  if (status.tickets > 0) {
+    str += `${status.tickets}\n\n`;
+  }
+  str += '**Number of completed workflow approvals** (Renee only)\n';
+  if (status.workflows > 0) {
+    str += `${status.workflows}\n\n`;
+  }
+  str += '**Number of reports delivered** (Rob only)\n';
+  if (status.reports > 0) {
+    str += `${status.reports}\n\n`;
+  }
+  str += '**Number of mobile myApron updates**\n';
+  if (status.mobileUpdates > 0) {
+    str += `${status.mobileUpdates}\n\n`;
+  }
   $('#result').append(str);
 }
 
