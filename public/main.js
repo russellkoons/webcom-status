@@ -73,6 +73,11 @@ function createString(status) {
     }
     str += '\n';
   }
+  str += '**Number of NextGen Uploads**\n';
+  if (status.uploads > 0) {
+    str += `${status.uploads}\n\n`;
+  }
+
   $('#result').append(str);
 }
 
