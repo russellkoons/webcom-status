@@ -55,10 +55,11 @@ function createString(status) {
     }
   }
   if (status.audits.length > 0) {
-    str += '- Page audits:\n';
-    for (let i = 0; i < status.audits.length; i++) {
-      str += ` - ${status.audits[i]}\n`;
+    str += `- Page audits: ${status.audits[0]}`;
+    for (let i = 1; i < status.audits.length; i++) {
+      str += `, ${status.audits[i]}`;
     }
+    str += '\n';
   }
   if (status.enhancements.length > 0) {
     str += '- Audit enhancements:\n';
