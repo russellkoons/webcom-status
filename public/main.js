@@ -123,10 +123,15 @@ function buildForm() {
 
 }
 
-function plus(e, key) {
-  e.preventDefault();
+function plus(key) {
   const val = $(`#${key}`).val();
   testStatus[key] += parseInt(val);
+  createString(testStatus);
+}
+
+function minus(key) {
+  const val = $(`#${key}`).val();
+  testStatus[key] -= parseInt(val);
   createString(testStatus);
 }
 
