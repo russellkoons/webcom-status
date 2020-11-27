@@ -130,8 +130,13 @@ function plus(key) {
 }
 
 function minus(key) {
-  const val = $(`#${key}`).val();
-  testStatus[key] -= parseInt(val);
+  const val = parseInt($(`#${key}`).val());
+  if (testStatus[key] === 0 || val > testStatus[key]) {
+    testStatus[key] = 0;
+    createString(testStatus);
+    return;
+  }
+  testStatus[key] -= val;
   createString(testStatus);
 }
 
