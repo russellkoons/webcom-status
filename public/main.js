@@ -118,6 +118,10 @@ function createString(status) {
   $('#result').append(str);
 }
 
+function buildForm() {
+  
+}
+
 function signOut() {
   localStorage.removeItem('authToken');
   displayPage();
