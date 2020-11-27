@@ -55,6 +55,7 @@ let testStatus2 = {
 }
 
 function createString(status) {
+  $('#result').empty();
   let str = '**List of notable completions this week**';
   if (status.tasks.length > 0) {
     str+= '\n\n';
@@ -119,7 +120,14 @@ function createString(status) {
 }
 
 function buildForm() {
-  
+
+}
+
+function plus(e, key) {
+  e.preventDefault();
+  const val = $(`#${key}`).val();
+  testStatus[key] += parseInt(val);
+  createString(testStatus);
 }
 
 function signOut() {
