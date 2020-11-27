@@ -38,7 +38,7 @@
   </header>
   <main id="form-result" class="hidden">
     <section id="status-form">
-      <form>
+      <form onsubmit="event.preventDefault()">
         <fieldset>
           <div>
             <legend>Notable Completions</legend>
@@ -70,37 +70,37 @@
             <legend>NextGen Uploads</legend>
             <button id="upload-subtract">-</button>
             <input type="number" name="uploads" id="uploads" min="1" value="1">
-            <button id="uploads-add" onclick="plus(event, 'uploads')">+</button>
+            <button id="upload-add" onclick="plus('uploads')">+</button>
           </div>
           <div>
             <legend>Completed Tickets</legend>
             <button id="ticket-subtract">-</button>
             <input type="number" name="tickets" id="tickets" min="1" value="1">
-            <button id="tickets-add">+</button>
+            <button id="ticket-add" onclick="plus('tickets')">+</button>
           </div>
           <div>
             <legend>Workflows</legend>
             <button id="workflow-subtract">-</button>
             <input type="number" name="workflows" id="workflows" min="1" value="1">
-            <button id="workflows-add">+</button>
+            <button id="workflow-add" onclick="plus('workflows')">+</button>
           </div>
           <div>
             <legend>Reports</legend>
             <button id="report-subtract">-</button>
             <input type="number" name="reports" id="reports" min="1" value="1">
-            <button id="reports-add">+</button>
+            <button id="report-add" onclick="plus('reports')">+</button>
           </div>
           <div>
             <legend>Mobile Updates</legend>
             <button id="mobile-update-subtract">-</button>
             <input type="number" name="mobile-updates" id="mobile-updates" min="1" value="1">
-            <button id="mobileUpdates-add">+</button>
+            <button id="mobile-update-add" onclick="plus('mobileUpdates')">+</button>
           </div>
           <div>
             <legend>Content Author Reviews</legend>
             <button id="review-subtract">-</button>
             <input type="number" name="reviews" id="reviews" min="1" value="1">
-            <button id="reviews-add">+</button>
+            <button id="review-add" onclick="plus('reviews')">+</button>
           </div>
         </fieldset>
       </form>
