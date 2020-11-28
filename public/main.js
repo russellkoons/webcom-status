@@ -119,12 +119,17 @@ function createString(status) {
   $('#result').append(str);
 }
 
+function buildForm() {
+  buildTasks();
+} 
+
 function buildTasks() {
   $('#task-builds').empty();
   testStatus.tasks.forEach((task, index) => {
     $('#task-builds').append(`
       <input type="text" name="tasks" id="tasks-${index}" value="${task}" />
-      <button id="task-minus-${index}" onclick="removeItem('tasks', ${index})">-</button><br>
+      <button id="task-minus-${index}" onclick="removeItem('tasks', ${index})">Remove</button>
+      <button id="tast-update-${index}" onclick="updateItem('tasks', ${index})">Update</button><br>
     `)
   });
 }
@@ -141,9 +146,14 @@ function addTask() {
 }
 
 function removeItem(key, i) {
-  console.log(testStatus[key][i]);
   testStatus[key].splice(i, 1);
-  buildTasks();
+  buildForm();
+  createString(testStatus);
+}
+
+function updateItem(key, i) {
+  testStatus[key][i] = $(`#${key}-${i}`).val();
+  buildForm();
   createString(testStatus);
 }
 
