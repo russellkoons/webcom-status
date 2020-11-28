@@ -187,6 +187,20 @@ function buildEnhancements() {
   });
 }
 
+function addEnhancement() {
+  if (!$('#new-enhancement-page').val() || !$('#new-enhancement-change').val()) {
+    $('#enhancement-error').removeClass('hidden');
+    return;
+  }
+  $('#enhancement-error').addClass('hidden');
+  testStatus.enhancements.push({
+    page: $('#new-enhancement-page').val(),
+    change: $('#new-enhancement-change').val(),
+  });
+  buildEnhancements();
+  createString(testStatus);
+}
+
 function removeItem(key, i) {
   testStatus[key].splice(i, 1);
   buildForm();
