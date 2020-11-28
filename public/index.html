@@ -70,13 +70,17 @@
           </div>
           <div id="build-form">
             <legend>Page Builds</legend>
-            <!-- <input type="text" name="builds" id="page-build" valuie="Page name" />
-            <select>
+            <input type="text" name="builds" id="new-build-name" placeholder="Page name" />
+            <select id="new-build-progress">
               <option value="In Progress">In Progress</option>
               <option value="Completed">Completed</option>
             </select>
-            <input type="date" name="builds" id="build-date" />
-            <button id="build-button">+</button> -->
+            <input type="text" name="builds" id="new-build-date" placeholder="Date" />
+            <button id="add-build-button" onclick="addBuild()">+</button>
+            <div id="build-error" class="hidden">
+              <p>Please enter a value before submitting</p>
+            </div>
+            <div id="build-builds"></div>
           </div>
           <div>
             <legend>NextGen Uploads</legend>

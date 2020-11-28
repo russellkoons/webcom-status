@@ -23,12 +23,12 @@ let testStatus = {
     {
       page: 'Page 1',
       status: 'In Progress',
-      date: new Date()
+      date: '12/16/20'
     },
     {
       page: 'Page 2',
       status: 'Completed',
-      date: new Date()
+      date: '11/12/20'
     }
   ],
   uploads: 32,
@@ -129,6 +129,7 @@ function buildForm() {
   buildTasks();
   buildAudits();
   buildEnhancements();
+  buildBuilds();
 } 
 
 function buildTasks() {
@@ -208,6 +209,23 @@ function updateEnhancement(i) {
   }
   buildEnhancements();
   createString(testStatus);
+}
+
+function buildBuilds() {
+  $('#build-builds').empty();
+  testStatus.builds.forEach((build, index) => {
+    $('#build-builds').append(`
+      <input type="text" name="builds" id="builds-page-${index}" value="${build.page}" />
+      <select id="build-progress-${index}">
+        <option value="In Progress">In Progress</option>
+        <option value="Completed">Completed</option>
+      </select>
+      <input type="text" name="builds" id="builds-date-${index}" value="${build.date}" />
+      <button id="build-minus-${index}" onclick="removeItem('builds', ${index})">Remove</button>
+      <button id="build-update-${index}" onclick="updateBuild(${index})">Update</button><br>
+    `);
+    document.getElementById(`build-progress-${index}`).value = build.status;
+  });
 }
 
 function removeItem(key, i) {
