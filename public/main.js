@@ -119,8 +119,10 @@ function createString(status) {
   $('#result').append(str);
 }
 
-function buildForm() {
-
+function buildTasks() {
+  testStatus.tasks.forEach(task => {
+    console.log(task);
+  });
 }
 
 function plus(key) {
@@ -273,6 +275,8 @@ function displayPage() {
 // function testingTextarea() {
 //   $('#result').append(testString);
 // }
+
+window.onload = buildTasks();
 
 $(function() {
   displayPage();
