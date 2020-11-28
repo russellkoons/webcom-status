@@ -139,6 +139,7 @@ function addTask() {
   $('#task-error').addClass('hidden');
   testStatus.tasks.push($('#new-task').val());
   buildTasks();
+  createString(testStatus);
 }
 
 function plus(key) {
