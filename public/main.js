@@ -64,6 +64,9 @@ function createString(status) {
     }
   }
   if (status.audits.length > 0) {
+    if (!status.tasks.length) {
+      str+= '\n';
+    }
     str += `- Page audits: ${status.audits[0]}`;
     for (let i = 1; i < status.audits.length; i++) {
       str += `, ${status.audits[i]}`;
@@ -71,6 +74,9 @@ function createString(status) {
     str += '\n';
   }
   if (status.enhancements.length > 0) {
+    if (!status.tasks.length && !status.audits.length) {
+      str+= '\n';
+    }
     str += '- Audit enhancements:\n';
     for (let i = 0; i < status.enhancements.length; i++) {
       str += ` - ${status.enhancements[i].page} - ${status.enhancements[i].change}\n`
@@ -155,6 +161,17 @@ function buildAudits() {
       <button id="audit-update-${index}" onclick="updateItem('audits', ${index})">Update</button><br>
     `)
   });
+}
+
+function addAudit() {
+  if ($('#new-audit').val() === '') {
+    $('#audit-error').removeClass('hidden');
+    return;
+  }
+  $('#audit-error').addClass('hidden');
+  testStatus.audits.push($('#new-audit').val());
+  buildAudits();
+  createString(testStatus);
 }
 
 function removeItem(key, i) {
