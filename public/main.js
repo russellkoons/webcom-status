@@ -120,11 +120,12 @@ function createString(status) {
 }
 
 function buildTasks() {
+  $('#task-builds').empty();
   testStatus.tasks.forEach((task, index) => {
     console.log(task);
-    $('#task-form').append(`
-    <input type="text" name="tasks" id="tasks-${index}" key="${index}" value="${task}" />
-    <button id="task-minus-${index}">-</button><br>
+    $('#task-builds').append(`
+      <input type="text" name="tasks" id="tasks-${index}" key="${index}" value="${task}" />
+      <button id="task-minus-${index}">-</button><br>
     `)
   });
 }
@@ -136,6 +137,8 @@ function addTask() {
     return;
   }
   $('#task-error').addClass('hidden');
+  testStatus.tasks.push($('#new-task').val());
+  buildTasks();
 }
 
 function plus(key) {
