@@ -129,6 +129,15 @@ function buildTasks() {
   });
 }
 
+function addTask() {
+  console.log($('#new-task').val());
+  if ($('#new-task').val() === '') {
+    $('#task-error').removeClass('hidden');
+    return;
+  }
+  $('#task-error').addClass('hidden');
+}
+
 function plus(key) {
   const val = $(`#${key}`).val();
   testStatus[key] += parseInt(val);

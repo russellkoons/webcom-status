@@ -42,8 +42,11 @@
         <fieldset>
           <div id="task-form">
             <legend>Notable Completions</legend>
-            <!-- <input type="text" name="tasks" id="tasks" />
-            <button id="task-button">+</button> -->
+            <input type="text" name="tasks" id="new-task" />
+            <button id="add-task-button" onclick="addTask()">+</button><br>
+            <div id="task-error" class="hidden">
+              <p>Please enter a value before submitting</p>
+            </div>
           </div>
           <div id="audit-form">
             <legend>Audits</legend>
