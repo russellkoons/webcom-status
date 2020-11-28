@@ -120,8 +120,12 @@ function createString(status) {
 }
 
 function buildTasks() {
-  testStatus.tasks.forEach(task => {
+  testStatus.tasks.forEach((task, index) => {
     console.log(task);
+    $('#task-form').append(`
+    <input type="text" name="tasks" id="tasks-${index}" key="${index}" value="${task}" />
+    <button id="task-minus-${index}">-</button><br>
+    `)
   });
 }
 
@@ -276,10 +280,9 @@ function displayPage() {
 //   $('#result').append(testString);
 // }
 
-window.onload = buildTasks();
-
 $(function() {
   displayPage();
   // testingTextarea();
   createString(testStatus);
+  buildTasks();
 });
