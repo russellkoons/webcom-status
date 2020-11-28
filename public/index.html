@@ -60,9 +60,13 @@
           </div>
           <div id="enhancement-form">
             <legend for="enhancements">Page Audit Enhancements</legend>
-            <!-- <input type="text" name="enhancements" id="page" value="Page name" />
-            <input type="text" name="enhancements" id="change" value="Enhancement" />
-            <button id="enhancement-button">+</button> -->
+            <input type="text" name="enhancements" id="new-enhancement-page" value="Page name" />
+            <input type="text" name="enhancements" id="new-enhancement-change" value="Enhancement" />
+            <button id="add-enhancement-button" onclick="addEnhancement()">+</button>
+            <div id="enhancement-error" class="hidden">
+              <p>Please enter a value before submitting</p>
+            </div>
+            <div id="enhancement-builds"></div>
           </div>
           <div id="build-form">
             <legend>Page Builds</legend>

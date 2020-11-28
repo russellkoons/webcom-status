@@ -128,6 +128,7 @@ function createString(status) {
 function buildForm() {
   buildTasks();
   buildAudits();
+  buildEnhancements();
 } 
 
 function buildTasks() {
@@ -172,6 +173,18 @@ function addAudit() {
   testStatus.audits.push($('#new-audit').val());
   buildAudits();
   createString(testStatus);
+}
+
+function buildEnhancements() {
+  $('#enhancement-builds').empty();
+  testStatus.enhancements.forEach((enhancement, index) => {
+    $('#enhancement-builds').append(`
+      <input type="text" name="enhancements" id="enhancements-page-${index}" value="${enhancement.page}" />
+      <input type="text" name="enhancements" id="enhancements-change-${index}" value="${enhancement.change}" />
+      <button id="enhancement-minus-${index}" onclick="removeItem('enhancements', ${index})">Remove</button>
+      <button id="enhancement-update-${index}" onclick="updateEnhancement(${index})">Update</button><br>
+    `)
+  });
 }
 
 function removeItem(key, i) {
