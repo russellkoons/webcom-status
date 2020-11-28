@@ -201,6 +201,15 @@ function addEnhancement() {
   createString(testStatus);
 }
 
+function updateEnhancement(i) {
+  testStatus.enhancements[i] = {
+    page: $(`#enhancements-page-${i}`).val(),
+    change: $(`#enhancements-change-${i}`).val(),
+  }
+  buildEnhancements();
+  createString(testStatus);
+}
+
 function removeItem(key, i) {
   testStatus[key].splice(i, 1);
   buildForm();
