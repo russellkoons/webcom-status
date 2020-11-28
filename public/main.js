@@ -56,9 +56,9 @@ let testStatus2 = {
 
 function createString(status) {
   $('#result').empty();
-  let str = '**List of notable completions this week**';
+  let str = '**List of notable completions this week**\n';
   if (status.tasks.length > 0) {
-    str+= '\n\n';
+    str+= '\n';
     for (let i = 0; i < status.tasks.length; i++) {
       str += `- ${status.tasks[i]}\n`;
     }
@@ -122,22 +122,27 @@ function createString(status) {
 function buildTasks() {
   $('#task-builds').empty();
   testStatus.tasks.forEach((task, index) => {
-    console.log(task);
     $('#task-builds').append(`
-      <input type="text" name="tasks" id="tasks-${index}" key="${index}" value="${task}" />
-      <button id="task-minus-${index}">-</button><br>
+      <input type="text" name="tasks" id="tasks-${index}" value="${task}" />
+      <button id="task-minus-${index}" onclick="removeItem('tasks', ${index})">-</button><br>
     `)
   });
 }
 
 function addTask() {
-  console.log($('#new-task').val());
   if ($('#new-task').val() === '') {
     $('#task-error').removeClass('hidden');
     return;
   }
   $('#task-error').addClass('hidden');
   testStatus.tasks.push($('#new-task').val());
+  buildTasks();
+  createString(testStatus);
+}
+
+function removeItem(key, i) {
+  console.log(testStatus[key][i]);
+  testStatus[key].splice(i, 1);
   buildTasks();
   createString(testStatus);
 }
