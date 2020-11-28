@@ -243,6 +243,16 @@ function addBuild() {
   createString(testStatus);
 }
 
+function updateBuild(i) {
+  testStatus.builds[i] = {
+    page: $(`#builds-page-${i}`).val(),
+    status: $(`#build-progress-${i}`).val(),
+    date: $(`#builds-date-${i}`).val(),
+  }
+  buildBuilds();
+  createString(testStatus);
+}
+
 function removeItem(key, i) {
   testStatus[key].splice(i, 1);
   buildForm();
