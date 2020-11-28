@@ -51,8 +51,12 @@
           </div>
           <div id="audit-form">
             <legend>Audits</legend>
-            <!-- <input type="text" name="audits" id="audits" />
-            <button id="audit-button">+</button> -->
+            <input type="text" name="audits" id="new-audit" />
+            <button id="add-audit-button">+</button>
+            <div id="audit-error" class="hidden">
+              <p>Please enter a value before submitting</p>
+            </div>
+            <div id="audit-builds"></div>
           </div>
           <div id="enhancement-form">
             <legend for="enhancements">Page Audit Enhancements</legend>

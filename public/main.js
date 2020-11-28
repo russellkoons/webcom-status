@@ -121,6 +121,7 @@ function createString(status) {
 
 function buildForm() {
   buildTasks();
+  buildAudits();
 } 
 
 function buildTasks() {
@@ -129,7 +130,7 @@ function buildTasks() {
     $('#task-builds').append(`
       <input type="text" name="tasks" id="tasks-${index}" value="${task}" />
       <button id="task-minus-${index}" onclick="removeItem('tasks', ${index})">Remove</button>
-      <button id="tast-update-${index}" onclick="updateItem('tasks', ${index})">Update</button><br>
+      <button id="task-update-${index}" onclick="updateItem('tasks', ${index})">Update</button><br>
     `)
   });
 }
@@ -143,6 +144,17 @@ function addTask() {
   testStatus.tasks.push($('#new-task').val());
   buildTasks();
   createString(testStatus);
+}
+
+function buildAudits() {
+  $('#audit-builds').empty();
+  testStatus.audits.forEach((audit, index) => {
+    $('#audit-builds').append(`
+      <input type="text" name="audits" id="audits-${index}" value="${audit}" />
+      <button id="audit-minus-${index}" onclick="removeItem('audits', ${index})">Remove</button>
+      <button id="audit-update-${index}" onclick="updateItem('audits', ${index})">Update</button><br>
+    `)
+  });
 }
 
 function removeItem(key, i) {
@@ -312,5 +324,5 @@ $(function() {
   displayPage();
   // testingTextarea();
   createString(testStatus);
-  buildTasks();
+  buildForm();
 });
