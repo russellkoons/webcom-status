@@ -228,6 +228,21 @@ function buildBuilds() {
   });
 }
 
+function addBuild() {
+  if (!$('#new-build-name').val() || !$('#new-build-date').val()) {
+    $('#build-error').removeClass('hidden');
+    return;
+  }
+  $('#build-error').addClass('hidden');
+  testStatus.builds.push({
+    page: $('#new-build-name').val(),
+    status: $('#new-build-progress').val(),
+    date: $('#new-build-date').val(),
+  });
+  buildBuilds();
+  createString(testStatus);
+}
+
 function removeItem(key, i) {
   testStatus[key].splice(i, 1);
   buildForm();
