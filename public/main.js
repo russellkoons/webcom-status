@@ -169,13 +169,13 @@ function logIn(data) {
     })
     .catch(err => {
       console.error(err);
-      $('#login-error').empty().append(`<p class="alert">Username or password is incorrect</p>`);
+      $('#login-error').empty().append('<p class="alert">Username or password is incorrect</p>');
     });
 }
 
 function signUp() {
   if ($('#signuppassword').val() !== $('#passconfirm').val()) {
-    $('#signup-error').empty().append(`<p class="alert">Passwords must match</p>`);
+    $('#signup-error').empty().append('<p class="alert">Passwords must match</p>');
   } else {
     const newUser = {
       'username': $('#signupusername').val(),
