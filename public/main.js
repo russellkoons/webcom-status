@@ -411,8 +411,19 @@ function displayPage() {
   $('#form-result').removeClass('hidden');
   $('#user-signout').removeClass('hidden').append(`
     <p>Welcome ${user}!</p>
-    <button type="button" onclick="signOut();">Sign Out</button><br/>
+    <button type="button" onclick="signOut()">Sign Out</button>
+    <button type="button" onclick="darkMode()" id="dark-mode-button">Dark Mode</button>
+    <br/>
   `);
+}
+
+function darkMode() {
+  if ($('*').hasClass('dark')) {
+    $('*').removeClass('dark');
+    return;
+  }
+  $('*').addClass('dark');
+  return;
 }
 
 // These were built to test the textarea formatting, keeping them here for future reference
