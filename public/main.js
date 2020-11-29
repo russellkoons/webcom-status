@@ -43,7 +43,6 @@ let testStatus = {
 }
 
 let emptyStatus = {
-  user: user,
   date: new Date(),
   tasks: [],
   audits: [],
@@ -315,8 +314,8 @@ function getStatus() {
       status = status[0];
       if (status === undefined) {
         status = emptyStatus;
+        status.user = user;
       }
-      console.log(status);
       createString(status);
       buildForm();
     })
