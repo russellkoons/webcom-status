@@ -82,7 +82,10 @@ function createString(status) {
       str += ` - ${status.enhancements[i].page} - ${status.enhancements[i].change}\n`
     }
   }
-  str += '\n**Page Builds**\n';
+  if (status.tasks.length > 0 || status.audits.length > 0 || status.enhancements.length > 0) {
+    str += '\n';
+  }
+  str += '**Page Builds**\n';
   if (status.builds.length > 0) {
     str += '\n';
     for (let i = 0; i < status.builds.length; i++) {
@@ -238,10 +241,10 @@ function buildBuilds() {
       <button id="build-update-${index}" onclick="updateBuild(${index})">Update</button><br>
     `);
     $(`#build-progress-${index}`).val(build.status);
-    if ($('body').hasClass('dark')) {
-      $('*').addClass('dark');
-    }
   });
+  if ($('body').hasClass('dark')) {
+    $('*').addClass('dark');
+  }
 }
 
 function addBuild() {
