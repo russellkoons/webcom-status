@@ -6,8 +6,12 @@ main {
   display: flex;
 }
 
-main section {
-  width: 50%;
+#status-form {
+  width: 55%;
+}
+
+#status-result {
+  width: 45%;
 }
 
 textarea {
