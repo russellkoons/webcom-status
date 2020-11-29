@@ -141,6 +141,9 @@ function buildTasks() {
       <button id="task-update-${index}" onclick="updateItem('tasks', ${index})">Update</button><br>
     `)
   });
+  if ($('body').hasClass('dark')) {
+    $('*').addClass('dark');
+  }
 }
 
 function addTask() {
@@ -164,6 +167,9 @@ function buildAudits() {
       <button id="audit-update-${index}" onclick="updateItem('audits', ${index})">Update</button><br>
     `)
   });
+  if ($('body').hasClass('dark')) {
+    $('*').addClass('dark');
+  }
 }
 
 function addAudit() {
@@ -188,6 +194,9 @@ function buildEnhancements() {
       <button id="enhancement-update-${index}" onclick="updateEnhancement(${index})">Update</button><br>
     `)
   });
+  if ($('body').hasClass('dark')) {
+    $('*').addClass('dark');
+  }
 }
 
 function addEnhancement() {
@@ -228,7 +237,10 @@ function buildBuilds() {
       <button id="build-minus-${index}" onclick="removeItem('builds', ${index})">Remove</button>
       <button id="build-update-${index}" onclick="updateBuild(${index})">Update</button><br>
     `);
-    document.getElementById(`build-progress-${index}`).value = build.status;
+    $(`#build-progress-${index}`).val(build.status);
+    if ($('body').hasClass('dark')) {
+      $('*').addClass('dark');
+    }
   });
 }
 
@@ -413,7 +425,6 @@ function displayPage() {
     <p>Welcome ${user}!</p>
     <button type="button" onclick="signOut()">Sign Out</button>
     <button type="button" onclick="darkMode()" id="dark-mode-button">Dark Mode</button>
-    <br/>
   `);
 }
 
