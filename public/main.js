@@ -150,6 +150,7 @@ function addTask() {
   }
   $('#task-error').addClass('hidden');
   testStatus.tasks.push($('#new-task').val());
+  $('#new-task').val('');
   buildTasks();
   createString(testStatus);
 }
@@ -172,6 +173,7 @@ function addAudit() {
   }
   $('#audit-error').addClass('hidden');
   testStatus.audits.push($('#new-audit').val());
+  $('#new-audit').val('');
   buildAudits();
   createString(testStatus);
 }
@@ -198,6 +200,8 @@ function addEnhancement() {
     page: $('#new-enhancement-page').val(),
     change: $('#new-enhancement-change').val(),
   });
+  $('#new-enhancement-page').val('');
+  $('#new-enhancement-change').val('');
   buildEnhancements();
   createString(testStatus);
 }
@@ -239,6 +243,9 @@ function addBuild() {
     status: $('#new-build-progress').val(),
     date: $('#new-build-date').val(),
   });
+  $('#new-build-name').val('');
+  $('#new-build-progress').val('In Progress');
+  $('#new-build-date').val('');
   buildBuilds();
   createString(testStatus);
 }
