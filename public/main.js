@@ -1,5 +1,8 @@
 'use strict';
 
+let status;
+let user;
+
 let testStatus = {
   user: 'russell',
   date: new Date(),
@@ -39,8 +42,8 @@ let testStatus = {
   reviews: 7
 }
 
-let testStatus2 = {
-  user: 'russell',
+let emptyStatus = {
+  user: user,
   date: new Date(),
   tasks: [],
   audits: [],
@@ -54,76 +57,76 @@ let testStatus2 = {
   reviews: 0
 }
 
-function createString(status) {
+function createString(stat) {
   $('#result').empty();
   let str = '**List of notable completions this week**\n';
-  if (status.tasks.length > 0) {
+  if (stat.tasks.length > 0) {
     str+= '\n';
-    for (let i = 0; i < status.tasks.length; i++) {
-      str += `- ${status.tasks[i]}\n`;
+    for (let i = 0; i < stat.tasks.length; i++) {
+      str += `- ${stat.tasks[i]}\n`;
     }
   }
-  if (status.audits.length > 0) {
-    if (!status.tasks.length) {
+  if (stat.audits.length > 0) {
+    if (!stat.tasks.length) {
       str+= '\n';
     }
-    str += `- Page audits: ${status.audits[0]}`;
-    for (let i = 1; i < status.audits.length; i++) {
-      str += `, ${status.audits[i]}`;
+    str += `- Page audits: ${stat.audits[0]}`;
+    for (let i = 1; i < stat.audits.length; i++) {
+      str += `, ${stat.audits[i]}`;
     }
     str += '\n';
   }
-  if (status.enhancements.length > 0) {
-    if (!status.tasks.length && !status.audits.length) {
+  if (stat.enhancements.length > 0) {
+    if (!stat.tasks.length && !stat.audits.length) {
       str+= '\n';
     }
     str += '- Audit enhancements:\n';
-    for (let i = 0; i < status.enhancements.length; i++) {
-      str += ` - ${status.enhancements[i].page} - ${status.enhancements[i].change}\n`
+    for (let i = 0; i < stat.enhancements.length; i++) {
+      str += ` - ${stat.enhancements[i].page} - ${stat.enhancements[i].change}\n`
     }
   }
-  if (status.tasks.length > 0 || status.audits.length > 0 || status.enhancements.length > 0) {
+  if (stat.tasks.length > 0 || stat.audits.length > 0 || stat.enhancements.length > 0) {
     str += '\n';
   }
   str += '**Page Builds**\n';
-  if (status.builds.length > 0) {
+  if (stat.builds.length > 0) {
     str += '\n';
-    for (let i = 0; i < status.builds.length; i++) {
-      str += `- ${status.builds[i].page} - ${status.builds[i].status} - ${status.builds[i].date}\n`;
+    for (let i = 0; i < stat.builds.length; i++) {
+      str += `- ${stat.builds[i].page} - ${stat.builds[i].stat} - ${stat.builds[i].date}\n`;
     }
     str += '\n';
   }
   str += '**Number of NextGen Uploads**\n';
-  if (status.uploads > 0) {
-    str += `${status.uploads}\n\n`;
+  if (stat.uploads > 0) {
+    str += `${stat.uploads}\n\n`;
   }
   str += '**Number of completed tickets** (CR and other)\n';
-  if (status.tickets > 0) {
-    str += `${status.tickets}\n\n`;
+  if (stat.tickets > 0) {
+    str += `${stat.tickets}\n\n`;
   }
   str += '**Number of completed workflow approvals** (Renee only)\n';
-  if (status.workflows > 0) {
-    str += `${status.workflows}\n\n`;
+  if (stat.workflows > 0) {
+    str += `${stat.workflows}\n\n`;
   }
   str += '**Number of reports delivered** (Rob only)\n';
-  if (status.reports > 0) {
-    str += `${status.reports}\n\n`;
+  if (stat.reports > 0) {
+    str += `${stat.reports}\n\n`;
   }
   str += '**Number of mobile myApron updates**\n';
-  if (status.mobileUpdates > 0) {
-    str += `${status.mobileUpdates}\n\n`;
+  if (stat.mobileUpdates > 0) {
+    str += `${stat.mobileUpdates}\n\n`;
   }
   str += '**Number of Pages Audited** - list the name of the pages and the enhancements in "List of notable completions this week" section\n';
-  if (status.audits.length > 0) {
-    str += `${status.audits.length}\n\n`;
+  if (stat.audits.length > 0) {
+    str += `${stat.audits.length}\n\n`;
   }
   str += '**Number of Content Author reviews**\n';
-  if (status.reviews > 0) {
-    str += `${status.reviews}\n\n`;
+  if (stat.reviews > 0) {
+    str += `${stat.reviews}\n\n`;
   }
   str += '**Number of Page Audit Enhancements**\n';
-  if (status.enhancements.length > 0) {
-    str += `${status.enhancements.length}`;
+  if (stat.enhancements.length > 0) {
+    str += `${stat.enhancements.length}`;
   }
   $('#result').append(str);
 }
@@ -137,7 +140,7 @@ function buildForm() {
 
 function buildTasks() {
   $('#task-builds').empty();
-  testStatus.tasks.forEach((task, index) => {
+  status.tasks.forEach((task, index) => {
     $('#task-builds').append(`
       <input type="text" name="tasks" id="tasks-${index}" value="${task}" />
       <button id="task-minus-${index}" onclick="removeItem('tasks', ${index})">Remove</button>
@@ -155,15 +158,15 @@ function addTask() {
     return;
   }
   $('#task-error').addClass('hidden');
-  testStatus.tasks.push($('#new-task').val());
+  status.tasks.push($('#new-task').val());
   $('#new-task').val('');
   buildTasks();
-  createString(testStatus);
+  createString(status);
 }
 
 function buildAudits() {
   $('#audit-builds').empty();
-  testStatus.audits.forEach((audit, index) => {
+  status.audits.forEach((audit, index) => {
     $('#audit-builds').append(`
       <input type="text" name="audits" id="audits-${index}" value="${audit}" />
       <button id="audit-minus-${index}" onclick="removeItem('audits', ${index})">Remove</button>
@@ -181,15 +184,15 @@ function addAudit() {
     return;
   }
   $('#audit-error').addClass('hidden');
-  testStatus.audits.push($('#new-audit').val());
+  status.audits.push($('#new-audit').val());
   $('#new-audit').val('');
   buildAudits();
-  createString(testStatus);
+  createString(status);
 }
 
 function buildEnhancements() {
   $('#enhancement-builds').empty();
-  testStatus.enhancements.forEach((enhancement, index) => {
+  status.enhancements.forEach((enhancement, index) => {
     $('#enhancement-builds').append(`
       <input type="text" name="enhancements" id="enhancements-page-${index}" value="${enhancement.page}" />
       <input type="text" name="enhancements" id="enhancements-change-${index}" value="${enhancement.change}" />
@@ -208,28 +211,28 @@ function addEnhancement() {
     return;
   }
   $('#enhancement-error').addClass('hidden');
-  testStatus.enhancements.push({
+  status.enhancements.push({
     page: $('#new-enhancement-page').val(),
     change: $('#new-enhancement-change').val(),
   });
   $('#new-enhancement-page').val('');
   $('#new-enhancement-change').val('');
   buildEnhancements();
-  createString(testStatus);
+  createString(status);
 }
 
 function updateEnhancement(i) {
-  testStatus.enhancements[i] = {
+  status.enhancements[i] = {
     page: $(`#enhancements-page-${i}`).val(),
     change: $(`#enhancements-change-${i}`).val(),
   }
   buildEnhancements();
-  createString(testStatus);
+  createString(status);
 }
 
 function buildBuilds() {
   $('#build-builds').empty();
-  testStatus.builds.forEach((build, index) => {
+  status.builds.forEach((build, index) => {
     $('#build-builds').append(`
       <input type="text" name="builds" id="builds-page-${index}" value="${build.page}" />
       <select id="build-progress-${index}">
@@ -253,7 +256,7 @@ function addBuild() {
     return;
   }
   $('#build-error').addClass('hidden');
-  testStatus.builds.push({
+  status.builds.push({
     page: $('#new-build-name').val(),
     status: $('#new-build-progress').val(),
     date: $('#new-build-date').val(),
@@ -262,46 +265,64 @@ function addBuild() {
   $('#new-build-progress').val('In Progress');
   $('#new-build-date').val('');
   buildBuilds();
-  createString(testStatus);
+  createString(status);
 }
 
 function updateBuild(i) {
-  testStatus.builds[i] = {
+  status.builds[i] = {
     page: $(`#builds-page-${i}`).val(),
     status: $(`#build-progress-${i}`).val(),
     date: $(`#builds-date-${i}`).val(),
   }
   buildBuilds();
-  createString(testStatus);
+  createString(status);
 }
 
 function removeItem(key, i) {
-  testStatus[key].splice(i, 1);
+  status[key].splice(i, 1);
   buildForm();
-  createString(testStatus);
+  createString(status);
 }
 
 function updateItem(key, i) {
-  testStatus[key][i] = $(`#${key}-${i}`).val();
+  status[key][i] = $(`#${key}-${i}`).val();
   buildForm();
-  createString(testStatus);
+  createString(status);
 }
 
 function plus(key) {
   const val = $(`#${key}`).val();
-  testStatus[key] += parseInt(val);
-  createString(testStatus);
+  status[key] += parseInt(val);
+  createString(status);
 }
 
 function minus(key) {
   const val = parseInt($(`#${key}`).val());
-  if (testStatus[key] === 0 || val > testStatus[key]) {
-    testStatus[key] = 0;
-    createString(testStatus);
+  if (status[key] === 0 || val > status[key]) {
+    status[key] = 0;
+    createString(status);
     return;
   }
-  testStatus[key] -= val;
-  createString(testStatus);
+  status[key] -= val;
+  createString(status);
+}
+
+function getStatus() {
+  fetch('/status')
+    .then(res => res.json())
+    .then(resJson => {
+      status = resJson.filter(obj => obj.user === user);
+      status = status[0];
+      if (status === undefined) {
+        status = emptyStatus;
+      }
+      console.log(status);
+      createString(status);
+      buildForm();
+    })
+    .catch(err => {
+      console.log(err);
+    })
 }
 
 function signOut() {
@@ -319,6 +340,7 @@ function logIn(data) {
   })
     .then(res => {
       if (res.ok) {
+        user = data.username;
         return res.json();
       } else {
         throw new Error(res.statusText);
@@ -421,7 +443,7 @@ function displayPage() {
     return;
   } 
   refreshToken(token);
-  let user = parse.user.username;
+  user = parse.user.username;
   $('#login-signup').addClass('hidden');
   $('#form-result').removeClass('hidden');
   $('#user-signout').removeClass('hidden').append(`
@@ -429,6 +451,7 @@ function displayPage() {
     <button type="button" onclick="signOut()">Sign Out</button>
     <button type="button" onclick="darkMode()" id="dark-mode-button">Dark Mode</button>
   `);
+  getStatus();
 }
 
 function darkMode() {
@@ -451,6 +474,4 @@ function darkMode() {
 $(function() {
   displayPage();
   // testingTextarea();
-  createString(testStatus);
-  buildForm();
 });
