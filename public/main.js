@@ -3,45 +3,6 @@
 let status;
 let user;
 
-let testStatus = {
-  user: 'russell',
-  date: new Date(),
-  tasks: ['Task 1', 'Task 2', 'Task 3'],
-  audits: ['Page 1', 'Page 2', 'Page 3'],
-  enhancements: [
-    {
-      page: 'Page 1',
-      change: 'Change 1'
-    },
-    {
-      page: 'Page 2',
-      change: 'Change 2'
-    },
-    {
-      page: 'Page 3',
-      change: 'Change 3'
-    }
-  ],
-  builds: [
-    {
-      page: 'Page 1',
-      status: 'In Progress',
-      date: '12/16/20'
-    },
-    {
-      page: 'Page 2',
-      status: 'Completed',
-      date: '11/12/20'
-    }
-  ],
-  uploads: 32,
-  tickets: 7,
-  workflows: 63,
-  reports: 12,
-  mobileUpdates: 4,
-  reviews: 7
-}
-
 let emptyStatus = {
   date: new Date(),
   tasks: [],
@@ -462,15 +423,6 @@ function darkMode() {
   return;
 }
 
-// These were built to test the textarea formatting, keeping them here for future reference
-
-// const testString = '**hello there**\n\n- hello there\n - line 3';
-
-// function testingTextarea() {
-//   $('#result').append(testString);
-// }
-
 $(function() {
   displayPage();
-  // testingTextarea();
 });
