@@ -286,6 +286,10 @@ function getStatus() {
 }
 
 function signOut() {
+  $('#task-builds').empty();
+  $('#audit-builds').empty();
+  $('#enhancement-builds').empty();
+  $('#build-builds').empty();
   localStorage.removeItem('authToken');
   displayPage();
 }
