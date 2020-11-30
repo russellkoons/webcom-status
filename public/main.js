@@ -1,9 +1,7 @@
 'use strict';
 
-let status;
 let user;
-
-let emptyStatus = {
+const emptyStatus = {
   tasks: [],
   audits: [],
   enhancements: [],
@@ -15,6 +13,7 @@ let emptyStatus = {
   mobileUpdates: 0,
   reviews: 0
 }
+let status = emptyStatus;
 
 function createString(stat) {
   $('#result').empty();
@@ -258,8 +257,8 @@ function updateItem(key, i) {
 }
 
 function plus(key) {
-  const val = $(`#${key}`).val();
-  status[key] += parseInt(val);
+  const val = parseInt($(`#${key}`).val());
+  status[key] += val;
   createString(status);
 }
 
@@ -275,7 +274,7 @@ function minus(key) {
 }
 
 function resetStatus() {
-  status = emptyStatus;
+  status = JSON.parse(JSON.stringify(emptyStatus));
   createString(status);
   buildForm();
 }
@@ -287,7 +286,7 @@ function getStatus() {
       status = resJson.filter(obj => obj.user === user);
       status = status[0];
       if (status === undefined) {
-        status = emptyStatus;
+        status = JSON.parse(JSON.stringify(emptyStatus));
         status.user = user;
       }
       createString(status);
