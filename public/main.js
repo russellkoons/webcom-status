@@ -4,7 +4,6 @@ let status;
 let user;
 
 let emptyStatus = {
-  date: new Date(),
   tasks: [],
   audits: [],
   enhancements: [],
@@ -419,18 +418,20 @@ function displayPage() {
   $('#user-signout').removeClass('hidden').append(`
     <p>Welcome ${user}!</p>
     <button type="button" onclick="signOut()">Sign Out</button>
-    <button type="button" onclick="darkMode()" id="dark-mode-button">Dark Mode</button>
+    <button type="button" onclick="darkMode()" id="dark-mode-button">Light Mode</button>
   `);
   getStatus();
 }
 
 function darkMode() {
   if ($('*').hasClass('dark')) {
-    $('*').removeClass('dark');
+    $('*').removeClass('dark').addClass('light');
+    $('#dark-mode-button').empty().append('Dark Mode');
     return;
   }
-  $('*').addClass('dark');
-  return;
+  $('*').removeClass('light').addClass('dark');
+    $('#dark-mode-button').empty().append('Light Mode');
+    return;
 }
 
 $(function() {

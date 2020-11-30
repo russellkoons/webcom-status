@@ -1,6 +1,11 @@
-.dark {
+*, .dark {
   color: white;
   background-color: black;
+}
+
+.light {
+  color: black;
+  background-color: white;
 }
 
 .hidden {
