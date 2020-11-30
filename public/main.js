@@ -50,7 +50,7 @@ function createString(stat) {
   if (stat.builds.length > 0) {
     str += '\n';
     for (let i = 0; i < stat.builds.length; i++) {
-      str += `- ${stat.builds[i].page} - ${stat.builds[i].stat} - ${stat.builds[i].date}\n`;
+      str += `- ${stat.builds[i].page} - ${stat.builds[i].status} - ${stat.builds[i].date}\n`;
     }
     str += '\n';
   }
