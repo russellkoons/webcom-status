@@ -267,6 +267,12 @@ function minus(key) {
   createString(status);
 }
 
+function resetStatus() {
+  status = emptyStatus;
+  createString(status);
+  buildForm();
+}
+
 function getStatus() {
   fetch('/status')
     .then(res => res.json())
