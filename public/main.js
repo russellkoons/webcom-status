@@ -84,9 +84,9 @@ function createString(stat) {
   if (stat.reviews > 0) {
     str += `${stat.reviews}\n\n`;
   }
-  str += '**Number of Page Audit Enhancements**\n';
+  str += '**Number of Page Audit Enhancements**';
   if (stat.enhancements.length > 0) {
-    str += `${stat.enhancements.length}`;
+    str += `\n${stat.enhancements.length}`;
   }
   $('#result').append(str);
 }
