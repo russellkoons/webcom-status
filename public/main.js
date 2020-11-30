@@ -108,6 +108,8 @@ function buildTasks() {
   });
   if ($('body').hasClass('dark')) {
     $('*').addClass('dark');
+  } else if ($('body').hasClass('light')) {
+    $('*').addClass('light');
   }
 }
 
@@ -134,6 +136,8 @@ function buildAudits() {
   });
   if ($('body').hasClass('dark')) {
     $('*').addClass('dark');
+  } else if ($('body').hasClass('light')) {
+    $('*').addClass('light');
   }
 }
 
@@ -161,6 +165,8 @@ function buildEnhancements() {
   });
   if ($('body').hasClass('dark')) {
     $('*').addClass('dark');
+  } else if ($('body').hasClass('light')) {
+    $('*').addClass('light');
   }
 }
 
@@ -206,6 +212,8 @@ function buildBuilds() {
   });
   if ($('body').hasClass('dark')) {
     $('*').addClass('dark');
+  } else if ($('body').hasClass('light')) {
+    $('*').addClass('light');
   }
 }
 
@@ -430,8 +438,8 @@ function darkMode() {
     return;
   }
   $('*').removeClass('light').addClass('dark');
-    $('#dark-mode-button').empty().append('Light Mode');
-    return;
+  $('#dark-mode-button').empty().append('Light Mode');
+  return;
 }
 
 $(function() {
