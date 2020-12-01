@@ -294,6 +294,31 @@ function copyText() {
   setTimeout(() => { $('#copied').empty(); }, 3000);
 }
 
+function saveStatus() {
+  if (!status.id) {
+    console.log('POST Endpoint');
+    fetch('/status', {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(status),
+    })
+      .then(res => {
+        if (res.ok) {
+          $('#copied').append('Status saved to database');
+        } else {
+          throw new Error(res.statusText);
+        }
+      })
+      .catch(err => {
+        $('#copied').append(`${err}`);
+      })
+  } else {
+    console.log('PUT Endpoint');
+  }
+}
+
 function getStatus() {
   fetch('/status')
     .then(res => res.json())
