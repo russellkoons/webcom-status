@@ -362,10 +362,7 @@ function getStatus() {
 }
 
 function signOut() {
-  $('#task-builds').empty();
-  $('#audit-builds').empty();
-  $('#enhancement-builds').empty();
-  $('#build-builds').empty();
+  $( '#task-builds, #audit-builds, #enhancement-builds, #build-builds, #last-saved' ).empty();
   localStorage.removeItem('authToken');
   displayPage();
 }
