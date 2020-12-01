@@ -313,9 +313,26 @@ function saveStatus() {
       })
       .catch(err => {
         $('#copied').append(`${err}`);
-      })
+      });
   } else {
     console.log('PUT Endpoint');
+    fetch(`/status/${status.id}`, {
+      method: 'put',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(status),      
+    })
+      .then(res => {
+        if (res.ok) {
+          $('#copied').append('Status saved to database');
+        } else {
+          throw new Error(res.statusText);
+        }
+      })
+      .catch(err => {
+        $('#copied').append(`${err}`);
+      });
   }
 }
 
