@@ -307,6 +307,7 @@ function saveStatus() {
       .then(res => {
         if (res.ok) {
           $('#copied').append('Status saved to database');
+          getStatus();
         } else {
           throw new Error(res.statusText);
         }
@@ -326,6 +327,7 @@ function saveStatus() {
       .then(res => {
         if (res.ok) {
           $('#copied').append('Status saved to database');
+          getStatus();
         } else {
           throw new Error(res.statusText);
         }
