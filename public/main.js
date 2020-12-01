@@ -274,7 +274,15 @@ function minus(key) {
 }
 
 function resetStatus() {
+  let id;
+  if (status.id) {
+    id = status.id;
+  }
   status = JSON.parse(JSON.stringify(emptyStatus));
+  status.user = user;
+  if (id) {
+    status.id = id;
+  }
   createString(status);
   buildForm();
 }
@@ -283,7 +291,7 @@ function copyText() {
   $('#result').select();
   document.execCommand('copy');
   $('#copied').append('Copied to clipboard!');
-  setTimeout(() => { $('#copied').empty(); }, 3000)
+  setTimeout(() => { $('#copied').empty(); }, 3000);
 }
 
 function getStatus() {
