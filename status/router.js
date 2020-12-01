@@ -32,6 +32,7 @@ router.post('/', (req, res) => {
     workflows: req.body.workflows,
     reports: req.body.reports,
     mobileUpdates: req.body.mobileUpdates,
+    reviews: req.body.reviews,
   })
     .then(status => res.status(201).json(status.serialize()))
     .catch(err => {
@@ -58,6 +59,7 @@ router.put('/:id', (req, res) => {
     workflows: req.body.workflows,
     reports: req.body.reports,
     mobileUpdates: req.body.mobileUpdates,
+    reviews: req.body.reviews,
   }
 
   Status.findByIdAndUpdate(req.params.id, { $set: updated }, { new: true })

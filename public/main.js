@@ -258,12 +258,14 @@ function updateItem(key, i) {
 
 function plus(key) {
   const val = parseInt($(`#${key}`).val());
+  console.log(val);
   status[key] += val;
   createString(status);
 }
 
 function minus(key) {
   const val = parseInt($(`#${key}`).val());
+  console.log(val);
   if (status[key] === 0 || val > status[key]) {
     status[key] = 0;
     createString(status);
