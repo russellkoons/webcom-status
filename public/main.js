@@ -280,10 +280,10 @@ function resetStatus() {
 }
 
 function copyText() {
-  console.log('Copying text...');
   $('#result').select();
   document.execCommand('copy');
-  console.log('Copied to clipboard!');
+  $('#copied').append('Copied to clipboard!');
+  setTimeout(() => { $('#copied').empty(); }, 3000)
 }
 
 function getStatus() {
