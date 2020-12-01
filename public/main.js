@@ -427,6 +427,9 @@ function displayPage() {
     <button type="button" onclick="signOut()">Sign Out</button>
     <button type="button" onclick="darkMode()" id="dark-mode-button">Light Mode</button>
   `);
+  if ($('body').hasClass('light')) {
+    $('#dark-mode-button').empty().append('Dark Mode');
+  }
   getStatus();
 }
 
