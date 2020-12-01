@@ -308,6 +308,7 @@ function saveStatus() {
         if (res.ok) {
           $('#copied').append('Status saved to database');
           getStatus();
+          setTimeout(() => { $('#copied').empty(); }, 3000);
         } else {
           throw new Error(res.statusText);
         }
@@ -328,6 +329,7 @@ function saveStatus() {
         if (res.ok) {
           $('#copied').append('Status saved to database');
           getStatus();
+          setTimeout(() => { $('#copied').empty(); }, 3000);
         } else {
           throw new Error(res.statusText);
         }
@@ -347,6 +349,9 @@ function getStatus() {
       if (status === undefined) {
         status = JSON.parse(JSON.stringify(emptyStatus));
         status.user = user;
+      }
+      if (status.date) {
+        $('#last-saved').empty().append(`Last saved on ${status.date}`)
       }
       createString(status);
       buildForm();
