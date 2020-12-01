@@ -279,6 +279,13 @@ function resetStatus() {
   buildForm();
 }
 
+function copyText() {
+  console.log('Copying text...');
+  $('#result').select();
+  document.execCommand('copy');
+  console.log('Copied to clipboard!');
+}
+
 function getStatus() {
   fetch('/status')
     .then(res => res.json())
