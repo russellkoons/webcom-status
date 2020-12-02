@@ -258,18 +258,14 @@ function updateItem(key, i) {
 
 function plus(key) {
   const val = parseInt($(`#${key}`).val());
-  if (!val) {
-    return;
-  }
+  if (!val) { return; }
   status[key] += val;
   createString(status);
 }
 
 function minus(key) {
   const val = parseInt($(`#${key}`).val());
-  if (!val) {
-    return;
-  }
+  if (!val) { return; }
   if (status[key] === 0 || val > status[key]) {
     status[key] = 0;
     createString(status);
@@ -419,15 +415,11 @@ function signUp() {
         if (res.ok) {
           logIn(newUser);
         } else {
-          return res.json();
+          throw new Error(res.json());
         }
       })
-      .then(resJson => {
-        $('#signup-error').empty().append(`<p class="alert">${resJson.message}</p>`);
-        console.log(resJson);
-      })
       .catch(err => {
-        $('#signup-error').empty().append('<p class="alert">Something went wrong!</p>');
+        $('#signup-error').empty().append(`<p class="alert">${err.message}</p>`);
         console.log(err);
       });
   }
