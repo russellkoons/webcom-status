@@ -202,8 +202,6 @@ function addEnhancement() {
     page: $('#new-enhancement-page').val(),
     change: [$('#new-enhancement-change').val()],
   });
-  console.log(status.enhancements);
-  $('#new-enhancement-page').val('');
   $('#new-enhancement-change').val('');
   buildEnhancements();
   createString(status);
