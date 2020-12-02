@@ -1,6 +1,7 @@
 'use strict';
 
 let user;
+let status;
 const emptyStatus = {
   tasks: [],
   audits: [],
@@ -13,7 +14,6 @@ const emptyStatus = {
   mobileUpdates: 0,
   reviews: 0
 }
-let status = emptyStatus;
 
 function createString(stat) {
   $('#result').empty();

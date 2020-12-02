@@ -32,14 +32,8 @@ router.post('/', jsonParser, (req, res) => {
     },
   }
 
-  const tooSmall = Object.keys(sized).find(field => 
-    'min' in sized[field] &&
-    req.body[field].trim().length < sized[field].min
-  );
-  const tooLarge = Object.keys(sized).find(field => 
-    'max' in sized[field] &&
-    req.body[field].trim().length > sized[field].max
-  );
+  const tooSmall = Object.keys(sized).find(field => 'min' in sized[field] && req.body[field].trim().length < sized[field].min);
+  const tooLarge = Object.keys(sized).find(field => 'max' in sized[field] && req.body[field].trim().length > sized[field].max);
 
   if (tooLarge || tooSmall) {
     return res.status(422).json({
