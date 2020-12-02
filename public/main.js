@@ -162,12 +162,13 @@ function buildEnhancements() {
       <button id="enhancement-minus-${index}" onclick="removeItem('enhancements', ${index})">Remove</button>
       <button id="enhancement-update-${index}" onclick="updateEnhancement(${index})">Update</button><br>
     `);
-    enhancement.change.forEach((change, i) => {
+    enhancement.change.forEach((change, jndex) => {
       console.log(change);
       $('#enhancement-builds').append(`
-        <input type="text" name="enhancements" id="enhancements-change-${index}-${i}" value="${change}" />
-        <button id="enhancement-minus-${index}-${i}" onclick="removeItem('enhancements', ${index})">Remove</button>
-        <button id="enhancement-update-${index}-${i}" onclick="updateEnhancement(${index}, ${i})">Update</button><br>
+        <label>Change ${jndex + 1}:</label>
+        <input type="text" name="enhancements" id="enhancements-change-${index}-${jndex}" value="${change}" />
+        <button id="enhancement-minus-${index}-${jndex}" onclick="removeItem('enhancements', ${index}, ${jndex})">Remove</button>
+        <button id="enhancement-update-${index}-${jndex}" onclick="updateEnhancement(${index}, ${jndex})">Update</button><br>
       `);
     })
   });
@@ -202,10 +203,11 @@ function addEnhancement() {
   createString(status);
 }
 
-function updateEnhancement(i) {
-  status.enhancements[i] = {
-    page: $(`#enhancements-page-${i}`).val(),
-    change: $(`#enhancements-change-${i}`).val(),
+function updateEnhancement(i, j) {
+  status.enhancements[i].page = $(`#enhancements-page-${i}`).val();
+  if (j !== undefined) {
+    console.log(j);
+    status.enhancements[i].change[j] = $(`#enhancements-change-${i}-${j}`).val();
   }
   buildEnhancements();
   createString(status);
