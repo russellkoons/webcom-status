@@ -41,7 +41,14 @@ function createString(stat) {
     }
     str += '- Audit enhancements:\n';
     for (let i = 0; i < stat.enhancements.length; i++) {
-      str += ` - ${stat.enhancements[i].page} - ${stat.enhancements[i].change}\n`
+      if (stat.enhancements[i].change.length > 1) {
+        str += ` - ${stat.enhancements[i].page}\n`;
+        for (let j = 0; j < stat.enhancements[i].change.length; j++) {
+          str += `  - ${stat.enhancements[i].change[j]}\n`;
+        }
+      } else {
+        str += ` - ${stat.enhancements[i].page} - ${stat.enhancements[i].change}\n`
+      }
     }
   }
   if (stat.tasks.length > 0 || stat.audits.length > 0 || stat.enhancements.length > 0) {
@@ -163,7 +170,6 @@ function buildEnhancements() {
       <button id="enhancement-update-${index}" onclick="updateEnhancement(${index})">Update</button><br>
     `);
     enhancement.change.forEach((change, jndex) => {
-      console.log(change);
       $('#enhancement-builds').append(`
         <label>Change ${jndex + 1}:</label>
         <input type="text" name="enhancements" id="enhancements-change-${index}-${jndex}" value="${change}" />
