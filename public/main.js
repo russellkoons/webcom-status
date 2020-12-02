@@ -2,6 +2,7 @@
 
 let user;
 let status;
+let enhancements;
 const emptyStatus = {
   tasks: [],
   audits: [],
@@ -156,11 +157,19 @@ function buildEnhancements() {
   $('#enhancement-builds').empty();
   status.enhancements.forEach((enhancement, index) => {
     $('#enhancement-builds').append(`
+      <label>Page:</label>
       <input type="text" name="enhancements" id="enhancements-page-${index}" value="${enhancement.page}" />
-      <input type="text" name="enhancements" id="enhancements-change-${index}" value="${enhancement.change}" />
       <button id="enhancement-minus-${index}" onclick="removeItem('enhancements', ${index})">Remove</button>
       <button id="enhancement-update-${index}" onclick="updateEnhancement(${index})">Update</button><br>
-    `)
+    `);
+    enhancement.change.forEach((change, i) => {
+      console.log(change);
+      $('#enhancement-builds').append(`
+        <input type="text" name="enhancements" id="enhancements-change-${index}-${i}" value="${change}" />
+        <button id="enhancement-minus-${index}-${i}" onclick="removeItem('enhancements', ${index})">Remove</button>
+        <button id="enhancement-update-${index}-${i}" onclick="updateEnhancement(${index}, ${i})">Update</button><br>
+      `);
+    })
   });
   if ($('body').hasClass('dark')) {
     $('*').addClass('dark');
@@ -175,10 +184,18 @@ function addEnhancement() {
     return;
   }
   $('#enhancement-error').addClass('hidden');
+  let search = status.enhancements.find(x => x.page === $('#new-enhancement-page').val());
+  if (search) {
+    search.change.push($('#new-enhancement-change').val());
+    buildEnhancements();
+    createString(status);
+    return;
+  }
   status.enhancements.push({
     page: $('#new-enhancement-page').val(),
-    change: $('#new-enhancement-change').val(),
+    change: [$('#new-enhancement-change').val()],
   });
+  console.log(status.enhancements);
   $('#new-enhancement-page').val('');
   $('#new-enhancement-change').val('');
   buildEnhancements();
