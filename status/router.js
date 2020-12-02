@@ -1,7 +1,7 @@
 'use strict';
 
 const express = require('express');
-const moment = require('moment');
+const { DateTime } = require('luxon');
 
 const { Status } = require('../models');
 
@@ -22,7 +22,7 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
   Status.create({
     user: req.body.user,
-    date: new Date(),
+    date: new Date(DateTime.local().setZone('America/New_York')),
     tasks: req.body.tasks,
     audits: req.body.audits,
     enhancements: req.body.enhancements,
@@ -48,8 +48,8 @@ router.put('/:id', (req, res) => {
     });
   }
 
-  const updated = {
-    date: new Date(),
+  const updated = {    
+    date: new Date(DateTime.local().setZone('America/New_York')),
     tasks: req.body.tasks,
     audits: req.body.audits,
     enhancements: req.body.enhancements,
