@@ -22,7 +22,7 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
   Status.create({
     user: req.body.user,
-    date: new Date(DateTime.local().setZone('America/New_York')),
+    date: DateTime.local().setLocale('us-ny').toLocaleString({ weekday: 'short', month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' }),
     tasks: req.body.tasks,
     audits: req.body.audits,
     enhancements: req.body.enhancements,
@@ -49,7 +49,7 @@ router.put('/:id', (req, res) => {
   }
 
   const updated = {    
-    date: new Date(DateTime.local().setZone('America/New_York')),
+    date: DateTime.local().setLocale('us-ny').toLocaleString({ weekday: 'short', month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' }),
     tasks: req.body.tasks,
     audits: req.body.audits,
     enhancements: req.body.enhancements,
