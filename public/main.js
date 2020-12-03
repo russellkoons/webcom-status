@@ -15,6 +15,8 @@ const emptyStatus = {
   reviews: 0
 }
 
+// This function creates the string that goes into the textarea, building and formatting the webcom status
+  // It checks the value of each item of the status object and builds the status accordingly
 function createString(stat) {
   let enhance = 0;
   $('#result').empty();
@@ -103,6 +105,7 @@ function createString(stat) {
   $('#result').append(str);
 }
 
+// This fires off all the build_____ functions in order to reset the form once you make a change
 function buildForm() {
   buildTasks();
   buildAudits();
@@ -110,6 +113,7 @@ function buildForm() {
   buildBuilds();
 } 
 
+// Functions for updating the form and status object on adding new tasks
 function buildTasks() {
   $('#task-builds').empty();
   status.tasks.forEach((task, index) => {
@@ -138,6 +142,7 @@ function addTask() {
   createString(status);
 }
 
+// Functions for updating the form and status object on adding new audits
 function buildAudits() {
   $('#audit-builds').empty();
   status.audits.forEach((audit, index) => {
@@ -166,6 +171,7 @@ function addAudit() {
   createString(status);
 }
 
+// Functions for updating the form and status object on adding new enhancements
 function buildEnhancements() {
   $('#enhancement-builds').empty();
   status.enhancements.forEach((enhancement, index) => {
@@ -213,6 +219,7 @@ function addEnhancement() {
   createString(status);
 }
 
+// Enhancements has special remove and update functions because there are 2 keys to worry about
 function updateEnhancement(i, j) {
   status.enhancements[i].page = $(`#enhancements-page-${i}`).val();
   if (j !== undefined) {
@@ -234,6 +241,7 @@ function removeEnhancement(i, j) {
   createString(status);
 }
 
+// Functions for updating the form and status object on adding new page builds
 function buildBuilds() {
   $('#build-builds').empty();
   status.builds.forEach((build, index) => {
@@ -282,6 +290,7 @@ function addBuild() {
   createString(status);
 }
 
+// Builds have a special update function since there's 3 keys to worry about
 function updateBuild(i) {
   status.builds[i] = {
     page: $(`#builds-page-${i}`).val(),
@@ -292,6 +301,7 @@ function updateBuild(i) {
   createString(status);
 }
 
+// Generic remove and update functions for tasks, audits and page builds
 function removeItem(key, i) {
   status[key].splice(i, 1);
   buildForm();
@@ -304,6 +314,7 @@ function updateItem(key, i) {
   createString(status);
 }
 
+// Plus and minus are for the number inputs, they add or subtract based on value of inputs
 function plus(key) {
   const val = parseInt($(`#${key}`).val());
   if (!val) { return; }
@@ -323,6 +334,8 @@ function minus(key) {
   createString(status);
 }
 
+// Takes the overarching status object and deep copies the empty status into it
+  // If a user has a status saved in the DB it also adds the ID
 function resetStatus() {
   let id;
   if (status.id) {
@@ -337,6 +350,7 @@ function resetStatus() {
   buildForm();
 }
 
+// Copies the text from the textarea field for easy pasting
 function copyText() {
   $('#result').select();
   document.execCommand('copy');
@@ -344,6 +358,7 @@ function copyText() {
   setTimeout(() => { $('#copied').empty(); }, 3000);
 }
 
+// POST and PUT endpoints for status database, created new if status does not have ID and updates if it does
 function saveStatus() {
   if (!status.id) {
     console.log('POST Endpoint');
@@ -390,6 +405,7 @@ function saveStatus() {
   }
 }
 
+// Fetches the statuses from the database
 function getStatus() {
   fetch('/status')
     .then(res => res.json())
@@ -411,6 +427,7 @@ function getStatus() {
     })
 }
 
+// Functions for the user and auth endpoints
 function signOut() {
   $( '#task-builds, #audit-builds, #enhancement-builds, #build-builds, #last-saved' ).empty();
   localStorage.removeItem('authToken');
@@ -473,14 +490,6 @@ function signUp() {
   }
 }
 
-function makeCreds() {
-  const creds = {
-    'username': $('#loginusername').val(),
-    'password': $('#loginpassword').val()
-  }
-  logIn(creds);
-}
-
 function refreshToken(token) {
   fetch('/auth/refresh', {
     method: 'post',
@@ -509,6 +518,7 @@ function parseJwt(token) {
   return JSON.parse(window.atob(base64));
 };
 
+// Displays the page based on if user is logged in or not
 function displayPage() {
   let token = localStorage.getItem('authToken');
   if (token === null) {
@@ -542,6 +552,7 @@ function displayPage() {
   getStatus();
 }
 
+// Turns dark mode on and off
 function darkMode() {
   if ($('*').hasClass('dark')) {
     $('*').removeClass('dark').addClass('light');
