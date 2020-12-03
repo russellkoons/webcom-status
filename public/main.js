@@ -16,6 +16,7 @@ const emptyStatus = {
 }
 
 function createString(stat) {
+  let enhance = 0;
   $('#result').empty();
   let str = '**List of notable completions this week**\n';
   if (stat.tasks.length > 0) {
@@ -43,9 +44,11 @@ function createString(stat) {
       if (stat.enhancements[i].change.length > 1) {
         str += ` - ${stat.enhancements[i].page}\n`;
         for (let j = 0; j < stat.enhancements[i].change.length; j++) {
+          enhance++;
           str += `  - ${stat.enhancements[i].change[j]}\n`;
         }
       } else {
+        enhance++;
         str += ` - ${stat.enhancements[i].page} - ${stat.enhancements[i].change}\n`
       }
     }
@@ -90,8 +93,8 @@ function createString(stat) {
     str += `${stat.reviews}\n\n`;
   }
   str += '**Number of Page Audit Enhancements**';
-  if (stat.enhancements.length > 0) {
-    str += `\n${stat.enhancements.length}`;
+  if (enhance > 0) {
+    str += `\n${enhance}`;
   }
   $('#result').append(str);
 }
