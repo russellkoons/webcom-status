@@ -2,7 +2,6 @@
 
 let user;
 let status;
-let enhancements;
 const emptyStatus = {
   tasks: [],
   audits: [],
@@ -514,6 +513,8 @@ function displayPage() {
   refreshToken(token);
   user = parse.user.username;
   $('#login-signup').addClass('hidden');
+  document.getElementById('login').reset();
+  document.getElementById('signup').reset();
   $('#form-result').removeClass('hidden');
   $('#user-signout').removeClass('hidden').append(`
     <p>Welcome ${user}!</p>
