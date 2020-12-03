@@ -438,6 +438,14 @@ function signOut() {
   displayPage();
 }
 
+function makeCreds() {
+  const creds = {
+    username: $('#loginusername').val(),
+    password: $('#loginpassword').val()
+  }
+  logIn(creds);
+}
+
 function logIn(data) {
   fetch('/auth/login', {
     method: 'post',
@@ -470,9 +478,9 @@ function signUp() {
     $('#signup-error').empty().append('<p class="alert">Passwords must match</p>');
   } else {
     const newUser = {
-      'username': $('#signupusername').val(),
-      'password': $('#signuppassword').val()
-    };
+      username: $('#signupusername').val(),
+      password: $('#signuppassword').val()
+    }
     fetch(`/users`, {
       method: 'post',
       headers: {
