@@ -51,7 +51,7 @@ function createString(stat) {
         }
       } else {
         enhance++;
-        str += ` - ${stat.enhancements[i].page} - ${stat.enhancements[i].change}\n`
+        str += ` - ${stat.enhancements[i].page} - ${stat.enhancements[i].change}\n`;
       }
     }
   }
@@ -112,6 +112,10 @@ function buildForm() {
   buildEnhancements();
   buildBuilds();
 } 
+
+// TODO
+  // Create generic build and add functions for audits and tasks since their functions are almost the exact same
+  // Maybe I could figure out a way to include enhancements and page builds as well?
 
 // Functions for updating the form and status object on adding new tasks
 function buildTasks() {
