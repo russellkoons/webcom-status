@@ -60,7 +60,11 @@ function createString(stat) {
   if (stat.builds.length > 0) {
     str += '\n';
     for (let i = 0; i < stat.builds.length; i++) {
-      str += `- ${stat.builds[i].page} - ${stat.builds[i].status} - ${stat.builds[i].date}\n`;
+      if (stat.builds[i].date === '') {
+        str += `- ${stat.builds[i].page} - ${stat.builds[i].status}\n`;
+      } else {
+        str += `- ${stat.builds[i].page} - ${stat.builds[i].status} - ${stat.builds[i].date}\n`;
+      }
     }
     str += '\n';
   }
@@ -253,16 +257,24 @@ function buildBuilds() {
 }
 
 function addBuild() {
-  if (!$('#new-build-name').val() || !$('#new-build-date').val()) {
+  if (!$('#new-build-name').val()) {
     $('#build-error').removeClass('hidden');
     return;
   }
   $('#build-error').addClass('hidden');
-  status.builds.push({
-    page: $('#new-build-name').val(),
-    status: $('#new-build-progress').val(),
-    date: $('#new-build-date').val(),
-  });
+  if ($('#new-build-date').val()) {
+    status.builds.push({
+      page: $('#new-build-name').val(),
+      status: $('#new-build-progress').val(),
+      date: $('#new-build-date').val(),
+    });
+  } else {
+    status.builds.push({
+      page: $('#new-build-name').val(),
+      status: $('#new-build-progress').val(),
+      date: '',
+    });
+  }
   $('#new-build-name').val('');
   $('#new-build-progress').val('In Progress');
   $('#new-build-date').val('');
