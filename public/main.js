@@ -433,7 +433,7 @@ function getStatus() {
 
 // Functions for the user and auth endpoints
 function signOut() {
-  $( '#task-builds, #audit-builds, #enhancement-builds, #build-builds, #last-saved' ).empty();
+  $( '#task-builds, #audit-builds, #enhancement-builds, #build-builds, #last-saved, #result' ).empty();
   localStorage.removeItem('authToken');
   displayPage();
 }
