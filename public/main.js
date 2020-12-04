@@ -2,6 +2,7 @@
 
 let user;
 let status;
+let saving = false;
 const emptyStatus = {
   tasks: [],
   audits: [],
@@ -17,7 +18,10 @@ const emptyStatus = {
 
 // This function creates the string that goes into the textarea, building and formatting the webcom status
   // It checks the value of each item of the status object and builds the status accordingly
-function createString(stat) {
+function createString(stat, check) {
+  if (!check) {
+    autoSave();
+  }
   let enhance = 0;
   $('#result').empty();
   let str = '**List of notable completions this week**\n';
@@ -423,7 +427,7 @@ function getStatus() {
       if (status.date) {
         $('#last-saved').empty().append(`Last saved on ${status.date}`)
       }
-      createString(status);
+      createString(status, 'get');
       buildForm();
     })
     .catch(err => {
@@ -574,6 +578,18 @@ function darkMode() {
   $('*').removeClass('light').addClass('dark');
   $('#dark-mode-button').empty().append('Light Mode');
   return;
+}
+
+function autoSave() {
+  if (saving) {
+    return;
+  }
+  saving = true;
+  setTimeout(() => {
+    saving = false;
+    console.log('Saving status...');
+    saveStatus();
+  }, 10000);
 }
 
 $(function() {
