@@ -427,7 +427,7 @@ function getStatus() {
       if (status.date) {
         $('#last-saved').empty().append(`Last saved on ${status.date}`)
       }
-      createString(status, 'get');
+      createString(status, 'hey');
       buildForm();
     })
     .catch(err => {
@@ -580,7 +580,9 @@ function darkMode() {
   return;
 }
 
+// Automatically saves the status to the DB after 10 second delay starting from the time of edit
 function autoSave() {
+  // Skips the save if a save is already about to happen
   if (saving) {
     return;
   }
