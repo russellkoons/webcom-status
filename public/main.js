@@ -14,10 +14,12 @@ const emptyStatus = {
   reports: 0,
   mobileUpdates: 0,
   reviews: 0,
-  percentage: [{
-    key: 'totalPages',
-    number: 0,
-  }],
+  percentage: [
+    {
+      key: 'total',
+      number: 0,
+    }
+  ],
 }
 
 // This function creates the string that goes into the textarea, building and formatting the webcom status
@@ -431,6 +433,14 @@ function getStatus() {
       if (status === undefined) {
         status = JSON.parse(JSON.stringify(emptyStatus));
         status.user = user;
+      }
+      if (!status.percentage) {
+        status.percentage = [
+          {
+            key: 'total',
+            number: 0,
+          }
+        ];
       }
       if (status.date) {
         $('#last-saved').empty().append(`Last saved on ${status.date}`)
