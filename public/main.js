@@ -125,6 +125,7 @@ function buildForm() {
   buildAudits();
   buildEnhancements();
   buildBuilds();
+  buildPercentage();
 } 
 
 // TODO
@@ -330,6 +331,11 @@ function updateItem(key, i) {
   status[key][i] = $(`#${key}-${i}`).val();
   buildForm();
   createString(status);
+}
+
+// Functions for updating the percentage of audit work complete
+function buildPercentage() {
+  $('#percentage').val(status.percentage[0].number);
 }
 
 function addPercentage() {
