@@ -18,6 +18,7 @@ const statusSchema = mongoose.Schema({
   reports: Number,
   mobileUpdates: Number,
   reviews: Number,
+  percentage: Array,
 });
 
 statusSchema.methods.serialize = function() {
@@ -35,6 +36,7 @@ statusSchema.methods.serialize = function() {
     reports: this.reports,
     mobileUpdates: this.mobileUpdates,
     reviews: this.reviews,
+    percentage: this.percentage,
   }
 }
 
