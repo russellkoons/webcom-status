@@ -13,7 +13,11 @@ const emptyStatus = {
   workflows: 0,
   reports: 0,
   mobileUpdates: 0,
-  reviews: 0
+  reviews: 0,
+  percentage: [{
+    key: 'totalPages',
+    number: 0,
+  }],
 }
 
 // This function creates the string that goes into the textarea, building and formatting the webcom status
@@ -102,9 +106,13 @@ function createString(stat, check) {
   if (stat.reviews > 0) {
     str += `${stat.reviews}\n\n`;
   }
-  str += '**Number of Page Audit Enhancements**';
+  str += '**Number of Page Audit Enhancements**\n';
   if (enhance > 0) {
-    str += `\n${enhance}`;
+    str += `${enhance}\n\n`;
+  }
+  str += '**Page audit work percentage complete**';
+  if (stat.percentage[0].number > 0) {
+    str += `\n${stat.percentage[0].number}%`;
   }
   $('#result').append(str);
 }
