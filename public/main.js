@@ -434,7 +434,7 @@ function getStatus() {
         status = JSON.parse(JSON.stringify(emptyStatus));
         status.user = user;
       }
-      if (!status.percentage) {
+      if (!status.percentage[0]) {
         status.percentage = [
           {
             key: 'total',
