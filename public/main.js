@@ -332,6 +332,12 @@ function updateItem(key, i) {
   createString(status);
 }
 
+function addPercentage() {
+  status.percentage[0].number = $('#percentage').val();
+  buildForm();
+  createString(status);
+}
+
 // Plus and minus are for the number inputs, they add or subtract based on value of inputs
 function plus(key) {
   const val = parseInt($(`#${key}`).val());
