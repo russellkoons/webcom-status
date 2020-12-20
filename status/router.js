@@ -33,6 +33,7 @@ router.post('/', (req, res) => {
     reports: req.body.reports,
     mobileUpdates: req.body.mobileUpdates,
     reviews: req.body.reviews,
+    percentage: req.body.percentage,
   })
     .then(status => res.status(201).json(status.serialize()))
     .catch(err => {
@@ -60,6 +61,7 @@ router.put('/:id', (req, res) => {
     reports: req.body.reports,
     mobileUpdates: req.body.mobileUpdates,
     reviews: req.body.reviews,
+    percentage: req.body.percentage,
   }
 
   Status.findByIdAndUpdate(req.params.id, { $set: updated }, { new: true })
