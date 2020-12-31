@@ -1,5 +1,7 @@
 'use strict';
 
+console.log('Happy 2021!');
+
 let user;
 let status;
 let saving = false;
