@@ -90,7 +90,7 @@ function createString(stat, check) {
   if (stat.tickets > 0) {
     str += `${stat.tickets}\n\n`;
   }
-  str += '**Number of completed workflow approvals** (Renee only)\n';
+  str += '**Number of completed workflow approvals**\n';
   if (stat.workflows > 0) {
     str += `${stat.workflows}\n\n`;
   }
@@ -102,22 +102,22 @@ function createString(stat, check) {
   if (stat.mobileUpdates > 0) {
     str += `${stat.mobileUpdates}\n\n`;
   }
-  str += '**Number of Pages Audited** - list the name of the pages and the enhancements in "List of notable completions this week" section\n';
-  if (stat.audits.length > 0) {
-    str += `${stat.audits.length}\n\n`;
-  }
-  str += '**Number of Content Author reviews**\n';
-  if (stat.reviews > 0) {
-    str += `${stat.reviews}\n\n`;
-  }
-  str += '**Number of Page Audit Enhancements**\n';
-  if (enhance > 0) {
-    str += `${enhance}\n\n`;
-  }
-  str += '**Page audit work percentage complete**';
-  if (stat.percentage[0].number > 0) {
-    str += `\n${stat.percentage[0].number}%`;
-  }
+  // str += '**Number of Pages Audited** - list the name of the pages and the enhancements in "List of notable completions this week" section\n';
+  // if (stat.audits.length > 0) {
+  //   str += `${stat.audits.length}\n\n`;
+  // }
+  // str += '**Number of Content Author reviews**\n';
+  // if (stat.reviews > 0) {
+  //   str += `${stat.reviews}\n\n`;
+  // }
+  // str += '**Number of Page Audit Enhancements**\n';
+  // if (enhance > 0) {
+  //   str += `${enhance}\n\n`;
+  // }
+  // str += '**Page audit work percentage complete**';
+  // if (stat.percentage[0].number > 0) {
+  //   str += `\n${stat.percentage[0].number}%`;
+  // }
   $('#result').append(str);
 }
 
