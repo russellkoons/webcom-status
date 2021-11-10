@@ -70,7 +70,7 @@ function createString(stat, check) {
   if (stat.tasks.length > 0 || stat.audits.length > 0 || stat.enhancements.length > 0) {
     str += '\n';
   }
-  str += '**Page Builds**\n';
+  str += '**Legacy Page Builds**\n';
   if (stat.builds.length > 0) {
     str += '\n';
     for (let i = 0; i < stat.builds.length; i++) {
@@ -82,7 +82,7 @@ function createString(stat, check) {
     }
     str += '\n';
   }
-  str += '**Number of NextGen Uploads**\n';
+  str += '**Number of New myApron Uploads** (assets & links)\n';
   if (stat.uploads > 0) {
     str += `${stat.uploads}\n\n`;
   }
@@ -100,7 +100,7 @@ function createString(stat, check) {
   }
   str += '**Number of mobile myApron updates**\n';
   if (stat.mobileUpdates > 0) {
-    str += `${stat.mobileUpdates}\n\n`;
+    str += `${stat.mobileUpdates}`;
   }
   // str += '**Number of Pages Audited** - list the name of the pages and the enhancements in "List of notable completions this week" section\n';
   // if (stat.audits.length > 0) {
