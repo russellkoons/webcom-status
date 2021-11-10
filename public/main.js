@@ -98,9 +98,9 @@ function createString(stat, check) {
   if (stat.reports > 0) {
     str += `${stat.reports}\n\n`;
   }
-  str += '**Number of mobile myApron updates**\n';
+  str += '**Number of mobile myApron updates**';
   if (stat.mobileUpdates > 0) {
-    str += `${stat.mobileUpdates}`;
+    str += `\n${stat.mobileUpdates}`;
   }
   // str += '**Number of Pages Audited** - list the name of the pages and the enhancements in "List of notable completions this week" section\n';
   // if (stat.audits.length > 0) {
